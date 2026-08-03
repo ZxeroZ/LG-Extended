@@ -203,7 +203,7 @@ import * as DocEN from '../docs/DOCUMENTACION_EN.md';
 </Layout>
 
 <style is:global>
-  /* Fix ASCII art diagrams to ensure they remain perfectly aligned */
+  /* Documentation section */
   #documentacion pre {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
     font-size: 0.85em;
@@ -211,17 +211,17 @@ import * as DocEN from '../docs/DOCUMENTACION_EN.md';
     overflow-x: auto;
     white-space: pre;
     padding: 1.5rem;
+    max-width: 100%;
   }
   
-  /* Fix Markdown tables to look elegant and structured */
   #documentacion table {
     width: 100%;
-    display: block;
-    overflow-x: auto;
     border-collapse: collapse;
     margin-top: 1.5rem;
     margin-bottom: 2rem;
     font-size: 0.9em;
+    display: table !important;
+    overflow: visible !important;
   }
   #documentacion thead th {
     background-color: rgba(255, 255, 255, 0.03);
@@ -230,33 +230,29 @@ import * as DocEN from '../docs/DOCUMENTACION_EN.md';
     text-align: left;
     color: #e5e5e5;
     font-weight: 600;
+    white-space: nowrap;
   }
   #documentacion tbody td {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     padding: 0.75rem 1rem;
     color: #a3a3a3;
+    white-space: nowrap;
   }
   #documentacion tbody tr:hover td {
     background-color: rgba(255, 255, 255, 0.02);
   }
 
-  /* Documentation content responsive */
-  #documentacion .prose {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-  #documentacion .prose pre {
+  /* Wrapper for scrollable tables */
+  .table-wrap {
     overflow-x: auto;
-    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+    margin: 1.5rem 0;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(17, 17, 17, 0.5);
   }
-  #documentacion .prose table {
-    display: block;
-    overflow-x: auto;
-    max-width: 100%;
-  }
-  #documentacion .prose img {
-    max-width: 100%;
-    height: auto;
+  .table-wrap table {
+    margin: 0 !important;
   }
 </style>
 
