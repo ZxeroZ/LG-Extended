@@ -1,0 +1,325 @@
+---
+// DocEN.astro - Summarized English documentation
+---
+
+<section id="doc-en">
+  <h1>LG Extended - Documentation</h1>
+
+  <h2>Project Summary</h2>
+  <p>Xposed module for LG devices (mainly V60) that customizes the system without modifying firmware.</p>
+
+  <table>
+    <thead><tr><th>Property</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Name</td><td>LG Extended</td></tr>
+      <tr><td>Package</td><td><code>com.zxerox.lg_extended</code></td></tr>
+      <tr><td>Min SDK</td><td>Android 10 (API 29)</td></tr>
+      <tr><td>Framework</td><td>Xposed API 82+</td></tr>
+      <tr><td>Requirements</td><td>LSPosed + Root (Magisk/KernelSU/APatch)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Key Features</h3>
+  <ul>
+    <li>Battery icon customization (iOS 26, iOS 17, OneUI 8, OneUI 9)</li>
+    <li>Per-app DPI adjustment</li>
+    <li>iOS-style multitasking</li>
+    <li>FLAG_SECURE bypass for screenshots</li>
+    <li>Custom Settings icons</li>
+    <li>Profile card in Settings</li>
+  </ul>
+
+  <hr />
+
+  <h2>Architecture</h2>
+  <p><code>MainHook.java</code> is the entry point that registers hooks based on the target package.</p>
+
+  <h3>Hook Lifecycle</h3>
+  <ol>
+    <li><code>MainHook.initZygote()</code> - Stores <code>MODULE_PATH</code></li>
+    <li><code>handleLoadPackage()</code> - Detects package and registers hooks</li>
+    <li>Each hook registers with try/catch for safety</li>
+    <li>Hooks modify behavior via <code>beforeHookedMethod</code> / <code>afterHookedMethod</code></li>
+    <li>Preferences stored via <code>ModPrefs</code> ContentProvider</li>
+    <li>MainHook marks successful hooks with <code>hook_active_{'{name}'}</code></li>
+  </ol>
+
+  <h3>Target Packages</h3>
+  <pre><code set:html={`"com.android.systemui" / "com.lge.systemui"
+  → QSPanelHook, ScrimHook, NotificationHook, BatteryHook
+
+"com.lge.launcher3" / "com.android.launcher3"
+  → RecentsHook, LauncherHook
+
+"android"
+  → FlagSecureHook
+
+"com.android.settings"
+  → SettingsHook
+
+Any package (except the app itself)
+  → DpiHook`}></code></pre>
+
+  <h3>Communication (ModPrefs)</h3>
+  <p>ContentProvider <code>content://com.zxerox.lg_extended.prefs/prefs</code></p>
+  <pre><code set:html={`// Write from UI
+ContentValues values = new ContentValues();
+values.put("key", "battery_style");
+values.put("type", "string");
+values.put("value", "IOS_26");
+contentResolver.insert(ModPrefs.CONTENT_URI, values);
+
+// Read from hook
+Cursor c = context.getContentResolver().query(
+    ModPrefs.CONTENT_URI,
+    new String[]{"battery_style"},
+    "string",
+    new String[]{"ONEUI_8"},
+    null
+);
+if (c != null && c.moveToFirst()) {
+    String value = c.getString(0);
+    c.close();
+}`}></code></pre>
+
+  <hr />
+
+  <h2>Hooks</h2>
+
+  <h3>3.1 BatteryHook</h3>
+  <p><strong>Package:</strong> SystemUI | <strong>File:</strong> <code>hooks/BatteryHook.java</code></p>
+  <p>Replaces <code>LGBatteryMeterView</code> with custom <code>BatteryIconView</code>.</p>
+  <pre><code set:html={`// Hook 1: onAttachedToWindow - Create custom view
+LGBatteryMeterView.onAttachedToWindow()
+  → Hide original view
+  → Create BatteryIconView
+  → Insert at same position
+  → Register ContentObserver for real-time changes
+
+// Hook 2: onBatteryLevelChanged - Update state
+LGBatteryMeterView.onBatteryLevelChanged(level, plugged, charging)
+  → Hide original view
+  → Get BatteryIconView
+  → Call actualizarEstado(level, charging)`}></code></pre>
+
+  <table>
+    <thead><tr><th>Style</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>ONEUI_8</code></td><td>Rounded pill (default)</td></tr>
+      <tr><td><code>ONEUI_9</code></td><td>Loading circle</td></tr>
+      <tr><td><code>IOS_26</code></td><td>iOS with integrated bolt</td></tr>
+      <tr><td><code>IOS_17</code></td><td>iOS with border and padding</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Preferences</h4>
+  <table>
+    <thead><tr><th>Key</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>battery_style</code></td><td>String</td><td>Selected style</td></tr>
+      <tr><td><code>battery_color_fondo</code></td><td>int</td><td>Normal background color</td></tr>
+      <tr><td><code>battery_color_texto</code></td><td>int</td><td>Normal text color</td></tr>
+      <tr><td><code>battery_color_fondo_cargando</code></td><td>int</td><td>Charging background</td></tr>
+      <tr><td><code>battery_color_fondo_bajo</code></td><td>int</td><td>Low battery background</td></tr>
+    </tbody>
+  </table>
+
+  <h3>3.2 DpiHook</h3>
+  <p><strong>Package:</strong> All apps | <strong>File:</strong> <code>hooks/DpiHook.java</code></p>
+  <p>Modifies DPI individually before rendering.</p>
+  <pre><code set:html={`ResourcesImpl.updateConfiguration(config, metrics, compatInfo)
+  → Read DPI from ModPrefs (cached)
+  → Modify config.densityDpi
+  → Modify metrics.densityDpi`}></code></pre>
+
+  <h3>3.3 RecentsHook</h3>
+  <p><strong>Package:</strong> Launcher | <strong>File:</strong> <code>hooks/RecentsHook.java</code></p>
+  <p>iOS-style multitasking with stack effect.</p>
+  <pre><code set:html={`// Intercepted methods (10+)
+TaskCornerRadius.get → Round corners to 32dp
+TaskView.setFullscreenProgress → Scale based on progress
+RecentsView.updateStackProperties → Main stack effect
+TaskView.onFinishInflate → Remove elevation`}></code></pre>
+
+  <table>
+    <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>STACK_GAP</td><td>150f</td></tr>
+      <tr><td>Initial scale</td><td>1.0 - 0.97</td></tr>
+      <tr><td>Minimum scale</td><td>0.70</td></tr>
+    </tbody>
+  </table>
+
+  <h3>3.4 FlagSecureHook</h3>
+  <p><strong>Package:</strong> android | Uses <code>XSharedPreferences</code> (not ModPrefs)</p>
+  <pre><code set:html={`WindowState.isSecureLocked()
+  → prefs.reload()
+  → prefs.getBoolean("bypass_flag_secure", true)
+  → If enabled: param.setResult(false)`}></code></pre>
+
+  <h3>3.5 SettingsHook</h3>
+  <p><strong>Package:</strong> com.android.settings</p>
+  <ul>
+    <li>Custom profile card (order = -999)</li>
+    <li>18 OneUI-style icon replacements</li>
+    <li>Divider removal</li>
+    <li>Icon tint lock</li>
+    <li>Enlarged AppBar (180dp, title 36sp)</li>
+  </ul>
+
+  <h3>3.6 LauncherHook</h3>
+  <p><strong>Package:</strong> Launcher | Sorts apps alphabetically after new install.</p>
+  <pre><code set:html={`AllAppsPagedView.addApps(apps, sessionId)
+  → Check hook_auto_sort_apps
+  → changeSortType(SortType.NAME)`}></code></pre>
+
+  <h3>3.7 QSPanelHook</h3>
+  <p><strong>Package:</strong> SystemUI | Transparent background for MIUI-style QS.</p>
+  <pre><code set:html={`QSContainerImpl.onFinishInflate()
+  → Check pref_enable_miui_qs
+  → setBackgroundColor(Color.TRANSPARENT)`}></code></pre>
+
+  <h3>3.8 ScrimHook</h3>
+  <p><strong>Package:</strong> SystemUI | Blur and transparency in SystemUI.</p>
+  <pre><code set:html={`ScrimController.attachViews()
+  → setBackgroundBlurRadius(150)
+  → mDefaultScrimAlpha = 0.4f`}></code></pre>
+
+  <h3>3.9 NotificationHook</h3>
+  <p><strong>Package:</strong> SystemUI | MIUI style for notifications.</p>
+  <ul>
+    <li>Blur on notification backgrounds</li>
+    <li>Custom colors</li>
+    <li>Hide expand arrow</li>
+  </ul>
+
+  <h3>3.10 SystemUIHook</h3>
+  <p><strong>Package:</strong> SystemUI | Replaces system resources.</p>
+  <table>
+    <thead><tr><th>Original Resource</th><th>Module Resource</th></tr></thead>
+    <tbody>
+      <tr><td><code>notification_material_background_color</code></td><td><code>..._miui</code></td></tr>
+      <tr><td><code>notification_corner_radius</code></td><td><code>..._miui</code></td></tr>
+      <tr><td><code>qs_icon_size</code></td><td><code>..._miui</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Hooks Summary</h3>
+  <table>
+    <thead><tr><th>Hook</th><th>Package</th><th>Methods</th></tr></thead>
+    <tbody>
+      <tr><td>BatteryHook</td><td>SystemUI</td><td>onAttachedToWindow, onBatteryLevelChanged</td></tr>
+      <tr><td>DpiHook</td><td>All apps</td><td>ResourcesImpl.updateConfiguration</td></tr>
+      <tr><td>RecentsHook</td><td>Launcher</td><td>TaskView.*, RecentsView.* (12+)</td></tr>
+      <tr><td>FlagSecureHook</td><td>android</td><td>WindowState.isSecureLocked</td></tr>
+      <tr><td>SettingsHook</td><td>Settings</td><td>DashboardFragment.*, etc.</td></tr>
+      <tr><td>LauncherHook</td><td>Launcher</td><td>AllAppsPagedView.addApps</td></tr>
+      <tr><td>QSPanelHook</td><td>SystemUI</td><td>QSContainerImpl.onFinishInflate</td></tr>
+      <tr><td>ScrimHook</td><td>SystemUI</td><td>ScrimController.*</td></tr>
+      <tr><td>NotificationHook</td><td>SystemUI</td><td>NotificationBackgroundView.*, etc.</td></tr>
+      <tr><td>SystemUIHook</td><td>SystemUI</td><td>Resource replacement</td></tr>
+    </tbody>
+  </table>
+
+  <hr />
+
+  <h2>UI Components</h2>
+
+  <table>
+    <thead><tr><th>Activity</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td>MainActivity</td><td>Home, Hooks, Logs, Settings (tabs)</td></tr>
+      <tr><td>BatteryStyleActivity</td><td>Battery style and color selector</td></tr>
+      <tr><td>DpiActivity</td><td>Per-app DPI selector</td></tr>
+      <tr><td>BypassActivity</td><td>FLAG_SECURE bypass toggle</td></tr>
+      <tr><td>CustomizeSettingsActivity</td><td>Profile editor for Settings</td></tr>
+    </tbody>
+  </table>
+
+  <hr />
+
+  <h2>Data Management</h2>
+  <pre><code set:html={`// LogWriter
+LogWriter.write(ctx, "OK", "BatteryHook", packageName, true);
+// Format: "2024-01-15 10:30:45 | OK | BatteryHook applied"
+
+// Persistence
+shared_prefs/lg_extended_prefs.xml (XML SharedPreferences)
+Limit: 200 entries (auto rotation)`}></code></pre>
+
+  <hr />
+
+  <h2>Root Integration</h2>
+  <pre><code set:html={`// Dependency
+implementation 'com.github.topjohnwu.libsu:core:5.2.2'
+
+// Root manager detection
+1. su -v → search "magisk", "kernelsu", "apatch"
+2. /data/adb/ksu → KernelSU
+3. /data/adb/ap → APatch
+4. /data/adb/magisk → Magisk
+
+// Root commands
+RootUtils.tieneRoot(); // boolean
+RootUtils.reiniciarSystemUI(() -> {}); // killall com.android.systemui`}></code></pre>
+
+  <hr />
+
+  <h2>Build Configuration</h2>
+  <pre><code set:html={`// app/build.gradle
+android {
+    namespace 'com.zxerox.lg_extended'
+    defaultConfig {
+        minSdk 29
+        targetSdk 36
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+// Dependencies
+compileOnly 'de.robv.android.xposed:api:82'
+implementation 'com.github.topjohnwu.libsu:core:5.2.2'
+implementation 'com.github.skydoves:colorpickerview:2.3.0'
+
+// xposed_init
+com.zxerox.lg_extended.MainHook`}></code></pre>
+
+  <hr />
+
+  <h2>File Structure</h2>
+  <pre><code set:html={`LG_Extended/app/src/main/java/com/zxerox/lg_extended/
+├── MainHook.java           # Entry point
+├── hooks/
+│   ├── BatteryHook.java
+│   ├── DpiHook.java
+│   ├── FlagSecureHook.java
+│   ├── RecentsHook.java
+│   ├── SettingsHook.java
+│   ├── LauncherHook.java
+│   ├── QSPanelHook.java
+│   ├── ScrimHook.java
+│   ├── NotificationHook.java
+│   └── SystemUIHook.java
+├── prefs/ModPrefs.java     # ContentProvider
+├── root/
+│   ├── DeviceInfoProvider.java
+│   └── RootUtils.java
+├── ui/                     # Activities
+└── views/BatteryIconView.java`}></code></pre>
+
+  <hr />
+
+  <h2>Troubleshooting</h2>
+  <table>
+    <thead><tr><th>Problem</th><th>Solution</th></tr></thead>
+    <tbody>
+      <tr><td>No active hooks shown</td><td>Restart SystemUI, verify LSPosed</td></tr>
+      <tr><td>Battery style not changing</td><td>Select style and restart SystemUI</td></tr>
+      <tr><td>Settings icons not changing</td><td>Toggle "Replace icons" and restart</td></tr>
+      <tr><td>DPI not applying</td><td>Force stop target app</td></tr>
+      <tr><td>Transparent QS not working</td><td>Toggle MIUI QS and restart SystemUI</td></tr>
+    </tbody>
+  </table>
+
+</section>
