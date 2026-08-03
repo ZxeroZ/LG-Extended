@@ -63,50 +63,65 @@ LG Extended provides a suite of mods for LG devices including:
 
 ### Component Diagram
 
-```mermaid
-graph TD
-    classDef default fill:#111,stroke:#333,stroke-width:1px,color:#ddd,border-radius:8px;
-    classDef main fill:#1e1b4b,stroke:#4f46e5,stroke-width:2px,color:#e0e7ff;
-    classDef hook fill:#064e3b,stroke:#059669,stroke-width:1px,color:#d1fae5;
-    classDef layer fill:#0f172a,stroke:#334155,stroke-width:1px,color:#cbd5e1;
+<div class="my-8 p-6 rounded-2xl bg-[#111111] border border-white/[0.08] overflow-x-auto">
 
-    App["LG Extended App"]:::layer
-    Main["MainHook.java<br/>(Punto de entrada Xposed)"]:::main
-    
-    App --> Main
-    
-    subgraph Hooks [Módulos de Intercepción]
-        direction LR
-        BH["BatteryHook<br/>(SysUI)"]:::hook
-        DH["DpiHook<br/>(Apps)"]:::hook
-        RH["RecentsHook<br/>(Launcher)"]:::hook
-        FSH["FlagSecureHook<br/>(android)"]:::hook
-        SH["SettingsHook<br/>(Settings)"]:::hook
-        QSH["QSPanelHook<br/>(SysUI)"]:::hook
-        ScrimH["ScrimHook<br/>(SysUI)"]:::hook
-        NH["NotificationHook<br/>(SysUI)"]:::hook
-        LH["LauncherHook<br/>(Launcher)"]:::hook
-        SUH["SystemUIHook<br/>(Reemplaza recursos)"]:::hook
-    end
-    
-    Main --> BH
-    Main --> DH
-    Main --> RH
-    Main --> FSH
-    Main --> SH
-    Main --> QSH
-    Main --> ScrimH
-    Main --> NH
-    Main --> LH
-    Main --> SUH
-    
-    MP["ModPrefs (ContentProvider)<br/>Almacenamiento centralizado"]:::layer
-    UI["UI Layer (Activities)<br/>MainActivity | BatteryStyleActivity | DpiActivity"]:::layer
-    RU["Root Utils (libsu)<br/>DeviceInfoProvider | RootUtils"]:::layer
-    
-    Hooks -. "Lee preferencias" .-> MP
-    UI -. "Guarda preferencias" .-> MP
-```
+**Component Diagram**
+
+<div class="flex flex-col items-center gap-3 min-w-[300px]">
+
+  <div class="px-5 py-3 rounded-xl bg-[#0f172a] border border-[#334155] text-[#cbd5e1] text-sm font-medium text-center">
+    LG Extended App
+  </div>
+
+  <svg class="w-5 h-5 text-[#6366f1]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+
+  <div class="px-5 py-3 rounded-xl bg-[#1e1b4b] border-2 border-[#4f46e5] text-[#e0e7ff] text-sm font-semibold text-center shadow-lg shadow-indigo-500/20">
+    MainHook.java<br><span class="text-xs font-normal opacity-70">(Xposed entry point)</span>
+  </div>
+
+  <svg class="w-5 h-5 text-[#6366f1]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+
+  <div class="w-full max-w-2xl p-4 rounded-xl bg-[#0f172a]/50 border border-[#334155]">
+    <div class="text-xs text-[#6366f1] font-semibold mb-3 uppercase tracking-wider text-center">Hooks Modules</div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
+      <div class="px-3 py-2 rounded-lg bg-[#064e3b]/60 border border-[#059669]/50 text-[#d1fae5] text-xs text-center">BatteryHook<br><span class="opacity-60">(SysUI)</span></div>
+      <div class="px-3 py-2 rounded-lg bg-[#064e3b]/60 border border-[#059669]/50 text-[#d1fae5] text-xs text-center">DpiHook<br><span class="opacity-60">(Apps)</span></div>
+      <div class="px-3 py-2 rounded-lg bg-[#064e3b]/60 border border-[#059669]/50 text-[#d1fae5] text-xs text-center">RecentsHook<br><span class="opacity-60">(Launcher)</span></div>
+      <div class="px-3 py-2 rounded-lg bg-[#064e3b]/60 border border-[#059669]/50 text-[#d1fae5] text-xs text-center">FlagSecureHook<br><span class="opacity-60">(android)</span></div>
+      <div class="px-3 py-2 rounded-lg bg-[#064e3b]/60 border border-[#059669]/50 text-[#d1fae5] text-xs text-center">SettingsHook<br><span class="opacity-60">(Settings)</span></div>
+      <div class="px-3 py-2 rounded-lg bg-[#064e3b]/60 border border-[#059669]/50 text-[#d1fae5] text-xs text-center">QSPanelHook<br><span class="opacity-60">(SysUI)</span></div>
+      <div class="px-3 py-2 rounded-lg bg-[#064e3b]/60 border border-[#059669]/50 text-[#d1fae5] text-xs text-center">ScrimHook<br><span class="opacity-60">(SysUI)</span></div>
+      <div class="px-3 py-2 rounded-lg bg-[#064e3b]/60 border border-[#059669]/50 text-[#d1fae5] text-xs text-center">NotificationHook<br><span class="opacity-60">(SysUI)</span></div>
+      <div class="px-3 py-2 rounded-lg bg-[#064e3b]/60 border border-[#059669]/50 text-[#d1fae5] text-xs text-center">LauncherHook<br><span class="opacity-60">(Launcher)</span></div>
+      <div class="px-3 py-2 rounded-lg bg-[#064e3b]/60 border border-[#059669]/50 text-[#d1fae5] text-xs text-center">SystemUIHook<br><span class="opacity-60">(Resources)</span></div>
+    </div>
+  </div>
+
+  <div class="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full max-w-2xl justify-center">
+    <div class="flex items-center gap-2 text-xs text-gray-500">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+      <span>Hooks read from</span>
+    </div>
+    <div class="px-4 py-2 rounded-lg bg-[#3b0764]/60 border border-[#9333ea]/50 text-[#f3e8ff] text-xs text-center">
+      ModPrefs<br><span class="opacity-60">(ContentProvider)</span>
+    </div>
+    <div class="flex items-center gap-2 text-xs text-gray-500">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+      <span>UI writes to</span>
+    </div>
+  </div>
+
+  <div class="flex flex-col sm:flex-row gap-3 mt-1">
+    <div class="px-4 py-2 rounded-lg bg-[#0f172a] border border-[#334155] text-[#cbd5e1] text-xs text-center">
+      UI Layer<br><span class="opacity-60">Activities</span>
+    </div>
+    <div class="px-4 py-2 rounded-lg bg-[#0f172a] border border-[#334155] text-[#cbd5e1] text-xs text-center">
+      Root Utils<br><span class="opacity-60">libsu</span>
+    </div>
+  </div>
+
+</div>
+</div>
 
 ### Hook Life Cycle
 
@@ -151,19 +166,29 @@ The module uses a **ContentProvider** (`ModPrefs`) as a communication system bet
 - The configuration app (UI)
 - Active hooks in different system processes
 
-```mermaid
-graph LR
-    classDef ui fill:#0f172a,stroke:#334155,color:#cbd5e1;
-    classDef prov fill:#3b0764,stroke:#9333ea,color:#f3e8ff;
-    classDef hook fill:#064e3b,stroke:#059669,color:#d1fae5;
-
-    UI["MainActivity<br/>(UI Process)"]:::ui
-    MP["ModPrefs<br/>(Module Process)"]:::prov
-    BH["BatteryHook<br/>(SystemUI Process)"]:::hook
-
-    UI -- "ContentResolver.insert()" --> MP
-    MP -- "ContentObserver.onChange()" --> BH
-```
+<div class="my-6 p-5 rounded-2xl bg-[#111111] border border-white/[0.08] overflow-x-auto">
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 min-w-[280px]">
+  <div class="px-5 py-3 rounded-xl bg-[#0f172a] border border-[#334155] text-[#cbd5e1] text-sm text-center">
+    MainActivity<br><span class="text-xs opacity-60">(UI Process)</span>
+  </div>
+  <div class="flex items-center gap-2 text-xs text-[#6366f1] font-mono whitespace-nowrap">
+    <span class="hidden sm:inline">ContentResolver.insert()</span>
+    <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+    <span class="sm:hidden">insert()</span>
+  </div>
+  <div class="px-5 py-3 rounded-xl bg-[#3b0764]/60 border border-[#9333ea]/50 text-[#f3e8ff] text-sm text-center">
+    ModPrefs<br><span class="text-xs opacity-60">(Module Process)</span>
+  </div>
+  <div class="flex items-center gap-2 text-xs text-[#059669] font-mono whitespace-nowrap">
+    <span class="hidden sm:inline">ContentObserver.onChange()</span>
+    <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+    <span class="sm:hidden">onChange()</span>
+  </div>
+  <div class="px-5 py-3 rounded-xl bg-[#064e3b]/60 border border-[#059669]/50 text-[#d1fae5] text-sm text-center">
+    BatteryHook<br><span class="text-xs opacity-60">(SystemUI Process)</span>
+  </div>
+</div>
+</div>
 
 ---
 
@@ -175,24 +200,76 @@ A **hook** is a technique that intercepts Android methods at runtime to modify t
 
 #### Life Cycle of a Hook
 
-```mermaid
-sequenceDiagram
-    participant Z as Zygote
-    participant OS as Android OS
-    participant M as MainHook
-    participant H as Hooks (Xposed)
-    
-    Z->>M: 1. Carga el módulo (initZygote)
-    Note over M: Almacena MODULE_PATH
-    
-    OS->>M: 2. Lanza cada app (handleLoadPackage)
-    M->>M: 3. Verifica el nombre del paquete
-    
-    M->>H: 4. Registra hooks según paquete
-    Note over H: beforeHookedMethod / afterHookedMethod
-    
-    H->>OS: 5. Modifican comportamiento en tiempo real
-```
+<div class="my-6 p-5 rounded-2xl bg-[#111111] border border-white/[0.08] overflow-x-auto">
+<div class="flex flex-col gap-0 min-w-[280px] max-w-lg mx-auto">
+
+  <div class="flex items-start gap-3">
+    <div class="flex flex-col items-center">
+      <div class="px-3 py-1.5 rounded-lg bg-[#0f172a] border border-[#334155] text-[#cbd5e1] text-xs font-medium whitespace-nowrap">Zygote</div>
+      <div class="w-px h-16 bg-[#334155]"></div>
+    </div>
+    <div class="mt-1 text-xs text-[#6366f1] font-mono">1. Loads module (initZygote)</div>
+  </div>
+
+  <div class="flex items-start gap-3">
+    <div class="flex flex-col items-center">
+      <div class="w-px h-4 bg-[#334155]"></div>
+    </div>
+    <div class="px-3 py-1.5 rounded-lg bg-[#1e1b4b]/60 border border-[#4f46e5]/40 text-[#e0e7ff] text-xs italic opacity-70">Stores MODULE_PATH</div>
+  </div>
+
+  <div class="flex items-start gap-3">
+    <div class="flex flex-col items-center">
+      <div class="w-px h-6 bg-[#334155]"></div>
+    </div>
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+      <div class="px-3 py-1.5 rounded-lg bg-[#0f172a] border border-[#334155] text-[#cbd5e1] text-xs font-medium whitespace-nowrap">Android OS</div>
+      <svg class="w-4 h-4 text-[#6366f1] flex-shrink-0 rotate-90 sm:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      <div class="px-3 py-1.5 rounded-lg bg-[#1e1b4b] border border-[#4f46e5] text-[#e0e7ff] text-xs font-medium whitespace-nowrap">MainHook</div>
+      <span class="text-xs text-[#6366f1] font-mono">2. Launches each app</span>
+    </div>
+  </div>
+
+  <div class="flex items-start gap-3">
+    <div class="flex flex-col items-center">
+      <div class="w-px h-4 bg-[#334155]"></div>
+    </div>
+    <div class="px-3 py-1.5 rounded-lg bg-[#1e1b4b]/60 border border-[#4f46e5]/40 text-[#e0e7ff] text-xs italic opacity-70">3. Verifies package name</div>
+  </div>
+
+  <div class="flex items-start gap-3">
+    <div class="flex flex-col items-center">
+      <div class="w-px h-6 bg-[#334155]"></div>
+    </div>
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+      <div class="px-3 py-1.5 rounded-lg bg-[#1e1b4b] border border-[#4f46e5] text-[#e0e7ff] text-xs font-medium whitespace-nowrap">MainHook</div>
+      <svg class="w-4 h-4 text-[#059669] flex-shrink-0 rotate-90 sm:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      <div class="px-3 py-1.5 rounded-lg bg-[#064e3b]/60 border border-[#059669]/50 text-[#d1fae5] text-xs font-medium whitespace-nowrap">Hooks (Xposed)</div>
+      <span class="text-xs text-[#059669] font-mono">4. Registers hooks by package</span>
+    </div>
+  </div>
+
+  <div class="flex items-start gap-3">
+    <div class="flex flex-col items-center">
+      <div class="w-px h-4 bg-[#334155]"></div>
+    </div>
+    <div class="px-3 py-1.5 rounded-lg bg-[#064e3b]/40 border border-[#059669]/30 text-[#d1fae5] text-xs italic opacity-70">beforeHookedMethod / afterHookedMethod</div>
+  </div>
+
+  <div class="flex items-start gap-3">
+    <div class="flex flex-col items-center">
+      <div class="w-px h-6 bg-[#334155]"></div>
+    </div>
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+      <div class="px-3 py-1.5 rounded-lg bg-[#064e3b]/60 border border-[#059669]/50 text-[#d1fae5] text-xs font-medium whitespace-nowrap">Hooks</div>
+      <svg class="w-4 h-4 text-[#059669] flex-shrink-0 rotate-90 sm:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      <div class="px-3 py-1.5 rounded-lg bg-[#0f172a] border border-[#334155] text-[#cbd5e1] text-xs font-medium whitespace-nowrap">Android OS</div>
+      <span class="text-xs text-[#059669] font-mono">5. Modifies behavior in real time</span>
+    </div>
+  </div>
+
+</div>
+</div>
 
 #### Types of Hooks in Xposed
 
@@ -224,19 +301,29 @@ private void hookSilently(ClassLoader cl, String className, String method, Objec
 
 The hooks and the configuration app communicate through a **ContentProvider** called `ModPrefs`. This allows the UI to change preferences and hooks to read them in real time.
 
-```mermaid
-graph LR
-    classDef ui fill:#0f172a,stroke:#334155,color:#cbd5e1;
-    classDef prov fill:#3b0764,stroke:#9333ea,color:#f3e8ff;
-    classDef hook fill:#064e3b,stroke:#059669,color:#d1fae5;
-
-    UI["MainActivity<br/>(UI Process)"]:::ui
-    MP["ModPrefs<br/>(Module Process)"]:::prov
-    BH["BatteryHook<br/>(SystemUI Process)"]:::hook
-
-    UI -- "ContentResolver.insert()" --> MP
-    MP -- "ContentObserver.onChange()" --> BH
-```
+<div class="my-6 p-5 rounded-2xl bg-[#111111] border border-white/[0.08] overflow-x-auto">
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 min-w-[280px]">
+  <div class="px-5 py-3 rounded-xl bg-[#0f172a] border border-[#334155] text-[#cbd5e1] text-sm text-center">
+    MainActivity<br><span class="text-xs opacity-60">(UI Process)</span>
+  </div>
+  <div class="flex items-center gap-2 text-xs text-[#6366f1] font-mono whitespace-nowrap">
+    <span class="hidden sm:inline">ContentResolver.insert()</span>
+    <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+    <span class="sm:hidden">insert()</span>
+  </div>
+  <div class="px-5 py-3 rounded-xl bg-[#3b0764]/60 border border-[#9333ea]/50 text-[#f3e8ff] text-sm text-center">
+    ModPrefs<br><span class="text-xs opacity-60">(Module Process)</span>
+  </div>
+  <div class="flex items-center gap-2 text-xs text-[#059669] font-mono whitespace-nowrap">
+    <span class="hidden sm:inline">ContentObserver.onChange()</span>
+    <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+    <span class="sm:hidden">onChange()</span>
+  </div>
+  <div class="px-5 py-3 rounded-xl bg-[#064e3b]/60 border border-[#059669]/50 text-[#d1fae5] text-sm text-center">
+    BatteryHook<br><span class="text-xs opacity-60">(SystemUI Process)</span>
+  </div>
+</div>
+</div>
 
 #### Write Preferences (from the UI)
 
@@ -401,19 +488,29 @@ ResourcesImpl.updateConfiguration(config, metrics, compatInfo)
 
 #### Data Flow
 
-```mermaid
-graph TD
-    classDef ui fill:#0f172a,stroke:#334155,color:#cbd5e1;
-    classDef prov fill:#3b0764,stroke:#9333ea,color:#f3e8ff;
-    classDef hook fill:#064e3b,stroke:#059669,color:#d1fae5;
-
-    UI["DpiActivity<br/>(Seleccionar DPI por app)"]:::ui
-    MP["ModPrefs<br/>(Almacenar paquete: dpi)"]:::prov
-    DH["DpiHook<br/>(Leer en cada app al cargar)"]:::hook
-
-    UI -- "insert()" --> MP
-    MP -- "notifyChange()" --> DH
-```
+<div class="my-6 p-5 rounded-2xl bg-[#111111] border border-white/[0.08] overflow-x-auto">
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 min-w-[280px]">
+  <div class="px-5 py-3 rounded-xl bg-[#0f172a] border border-[#334155] text-[#cbd5e1] text-sm text-center">
+    DpiActivity<br><span class="text-xs opacity-60">(Select DPI per app)</span>
+  </div>
+  <div class="flex items-center gap-2 text-xs text-[#6366f1] font-mono whitespace-nowrap">
+    <span class="hidden sm:inline">insert()</span>
+    <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+    <span class="sm:hidden">insert()</span>
+  </div>
+  <div class="px-5 py-3 rounded-xl bg-[#3b0764]/60 border border-[#9333ea]/50 text-[#f3e8ff] text-sm text-center">
+    ModPrefs<br><span class="text-xs opacity-60">(Store package: dpi)</span>
+  </div>
+  <div class="flex items-center gap-2 text-xs text-[#059669] font-mono whitespace-nowrap">
+    <span class="hidden sm:inline">notifyChange()</span>
+    <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+    <span class="sm:hidden">notifyChange()</span>
+  </div>
+  <div class="px-5 py-3 rounded-xl bg-[#064e3b]/60 border border-[#059669]/50 text-[#d1fae5] text-sm text-center">
+    DpiHook<br><span class="text-xs opacity-60">(Read on each app load)</span>
+  </div>
+</div>
+</div>
 
 #### Stored Preferences
 

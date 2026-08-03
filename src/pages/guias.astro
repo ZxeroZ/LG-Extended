@@ -187,7 +187,7 @@ import * as DocEN from '../docs/DOCUMENTACION_EN.md';
       <section id="documentacion" class="scroll-mt-28 relative">
         <h2 class="text-3xl font-bold text-white mb-8" id="doc-title">Documentación Técnica</h2>
         
-        <div class="w-full max-w-full overflow-x-auto pb-4">
+        <div class="w-full min-w-0">
           <div id="doc-es" class="prose prose-invert prose-gray prose-a:text-blue-400 hover:prose-a:text-blue-300 max-w-none prose-pre:bg-[#111111] prose-pre:border prose-pre:border-white/10 prose-img:rounded-xl">
             <Doc.Content />
           </div>
@@ -240,172 +240,27 @@ import * as DocEN from '../docs/DOCUMENTACION_EN.md';
     background-color: rgba(255, 255, 255, 0.02);
   }
 
-  /* Enhanced Mermaid Diagrams */
-  .mermaid-wrapper {
-    position: relative;
-    background: linear-gradient(145deg, rgba(17, 17, 17, 0.9), rgba(10, 10, 10, 0.95));
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 1rem;
-    padding: 1.5rem;
-    margin: 2rem 0;
+  /* Documentation content responsive */
+  #documentacion .prose {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+  #documentacion .prose pre {
     overflow-x: auto;
-    box-shadow: 
-      0 4px 24px rgba(0, 0, 0, 0.4),
-      0 0 0 1px rgba(255, 255, 255, 0.02) inset;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
+    max-width: 100%;
   }
-  .mermaid-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  }
-  .mermaid-wrapper:hover {
-    border-color: rgba(255, 255, 255, 0.12);
-    box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.5),
-      0 0 0 1px rgba(255, 255, 255, 0.04) inset;
-    transform: translateY(-2px);
-  }
-  .mermaid-wrapper .mermaid {
-    display: flex;
-    justify-content: center;
-    padding: 1rem 0;
-    width: 100%;
+  #documentacion .prose table {
+    display: block;
     overflow-x: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+    max-width: 100%;
   }
-  .mermaid-wrapper .mermaid::-webkit-scrollbar {
-    height: 6px;
-  }
-  .mermaid-wrapper .mermaid::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .mermaid-wrapper .mermaid::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
-  }
-  .mermaid-wrapper .mermaid::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
-  .mermaid-wrapper .mermaid svg {
+  #documentacion .prose img {
     max-width: 100%;
     height: auto;
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
-  }
-
-  /* Mermaid node hover effects */
-  .mermaid .node:hover > * {
-    filter: brightness(1.15);
-  }
-  .mermaid .edgePath:hover path {
-    stroke-width: 2px !important;
-  }
-  .mermaid .edgeLabel {
-    background: rgba(10, 10, 10, 0.85) !important;
-    padding: 2px 6px !important;
-    border-radius: 4px !important;
-    font-size: 0.75em !important;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .mermaid-wrapper {
-      padding: 1rem;
-      margin: 1.5rem 0;
-      border-radius: 0.875rem;
-    }
-    .mermaid-wrapper .mermaid {
-      padding: 0.5rem 0;
-    }
-    .mermaid-btn {
-      opacity: 1;
-      padding: 0.375rem 0.75rem;
-      font-size: 0.75rem;
-    }
-  }
-
-  /* Fullscreen Mermaid Modal */
-  .mermaid-modal {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9999;
-    background: rgba(5, 5, 8, 0.98);
-    backdrop-filter: blur(20px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    margin: 0 !important;
-    border-radius: 0 !important;
-    border: none !important;
-    animation: modalFadeIn 0.3s ease-out;
-  }
-  @keyframes modalFadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  .mermaid-modal .mermaid {
-    max-height: 85vh;
-  }
-  .mermaid-modal .mermaid svg {
-    max-width: 90vw !important;
-    max-height: 85vh !important;
-    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.5));
-  }
-  .mermaid-modal .mermaid-btn {
-    opacity: 1;
-    position: fixed;
-    top: 1.5rem;
-    right: 1.5rem;
-    padding: 0.625rem 1.25rem;
-    font-size: 0.9rem;
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.2);
-  }
-  .mermaid-btn {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: rgba(255, 255, 255, 0.7);
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    cursor: pointer;
-    opacity: 0;
-    transition: all 0.2s ease;
-    z-index: 10000;
-    backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    gap: 0.375rem;
-  }
-  .mermaid-wrapper:hover .mermaid-btn {
-    opacity: 1;
-  }
-  .mermaid-btn:hover {
-    background: rgba(255, 255, 255, 0.18);
-    border-color: rgba(255, 255, 255, 0.25);
-    color: white;
-    transform: scale(1.05);
   }
 </style>
 
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  
-  // Language toggle listener for documentation
+<script>
   document.addEventListener('langToggled', (e) => {
     const isEn = e.detail === 'en';
     const docEs = document.getElementById('doc-es');
@@ -424,100 +279,4 @@ import * as DocEN from '../docs/DOCUMENTACION_EN.md';
       }
     }
   });
-
-  mermaid.initialize({ 
-    startOnLoad: false, 
-    theme: 'dark',
-    themeVariables: {
-      primaryColor: '#1e1b4b',
-      primaryTextColor: '#e0e7ff',
-      primaryBorderColor: '#4f46e5',
-      lineColor: '#6366f1',
-      secondaryColor: '#064e3b',
-      tertiaryColor: '#0f172a',
-      fontFamily: 'Inter, system-ui, sans-serif',
-      fontSize: '14px',
-      nodeBorder: '#4f46e5',
-      mainBkg: '#1e1b4b',
-      nodeBkg: '#1e1b4b',
-      clusterBkg: '#0f172a',
-      clusterBorder: '#334155',
-      titleColor: '#f8fafc',
-      edgeLabelBackground: 'rgba(10, 10, 10, 0.85)',
-      textColor: '#e2e8f0',
-      noteBkgColor: '#1e1b4b',
-      noteTextColor: '#e0e7ff',
-      noteBorderColor: '#4f46e5',
-    },
-    flowchart: { 
-      htmlLabels: true,
-      useMaxWidth: true,
-    },
-    sequence: {
-      useMaxWidth: true,
-    },
-  });
-  
-  const renderMermaid = async () => {
-    const blocks = document.querySelectorAll('pre[data-language="mermaid"], pre code.language-mermaid');
-    
-    blocks.forEach((block) => {
-      const code = block.textContent;
-      
-      const wrapper = document.createElement('div');
-      wrapper.className = 'mermaid-wrapper relative group';
-      
-      const container = document.createElement('div');
-      container.className = 'mermaid flex justify-center py-4 w-full overflow-x-auto cursor-pointer';
-      container.textContent = code;
-      
-      const btn = document.createElement('button');
-      btn.className = 'mermaid-btn flex items-center gap-2';
-      
-      const iconExpand = `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>`;
-      const iconClose = `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
-      
-      btn.innerHTML = `${iconExpand} <span>Ampliar</span>`;
-      
-      const toggleModal = (e) => {
-        if (e) e.stopPropagation();
-        const parentContainer = wrapper.closest('.relative.z-10');
-        wrapper.classList.toggle('mermaid-modal');
-        const isOpen = wrapper.classList.contains('mermaid-modal');
-        btn.innerHTML = isOpen ? `${iconClose} <span>Cerrar</span>` : `${iconExpand} <span>Ampliar</span>`;
-        if (isOpen) {
-           document.body.style.overflow = 'hidden';
-           if (parentContainer) parentContainer.style.zIndex = '9999';
-        } else {
-           document.body.style.overflow = 'auto';
-           if (parentContainer) parentContainer.style.zIndex = '10';
-        }
-      };
-
-      btn.onclick = toggleModal;
-      wrapper.onclick = (e) => {
-        if (wrapper.classList.contains('mermaid-modal') && e.target === wrapper) {
-           toggleModal();
-        }
-      };
-      
-      wrapper.appendChild(container);
-      wrapper.appendChild(btn);
-      
-      const targetToReplace = block.tagName === 'PRE' ? block : block.parentElement;
-      targetToReplace.replaceWith(wrapper);
-    });
-    
-    try {
-      await mermaid.run({ querySelector: '.mermaid' });
-    } catch (e) {
-      console.error("Mermaid render error", e);
-    }
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', renderMermaid);
-  } else {
-    renderMermaid();
-  }
 </script>

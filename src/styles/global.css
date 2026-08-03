@@ -180,14 +180,51 @@
   .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
   /* Ensure Markdown content does not break mobile layout */
-  .prose pre,
-  .prose table {
+  .prose {
+    max-width: none !important;
+    width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+  
+  .prose pre {
     max-width: 100%;
+    overflow-x: auto;
+    white-space: pre;
   }
   
   .prose table {
-    display: block;
+    display: table;
+    width: 100%;
+    max-width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+  }
+  
+  .prose table thead {
+    display: table-header-group;
+  }
+  
+  .prose table tbody {
+    display: table-row-group;
+  }
+  
+  .prose table tr {
+    display: table-row;
+  }
+  
+  .prose table th,
+  .prose table td {
+    display: table-cell;
+    white-space: nowrap;
+  }
+  
+  .prose img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .prose > * {
+    min-width: 0;
   }
 }
