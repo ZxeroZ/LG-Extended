@@ -1,8 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
-import DocES from '../components/DocES.astro';
-import DocEN from '../components/DocEN.astro';
 ---
 
 <Layout title="Guías - LG Extended">
@@ -36,13 +34,6 @@ import DocEN from '../components/DocEN.astro';
             <li><a href="#iconos" class="text-gray-400 hover:text-gray-200 transition-colors text-[14px] block">5. Iconos de Ajustes</a></li>
             <li><a href="#qs" class="text-gray-400 hover:text-gray-200 transition-colors text-[14px] block">6. Ajustes Rápidos MIUI</a></li>
             <li><a href="#personalizar" class="text-gray-400 hover:text-gray-200 transition-colors text-[14px] block">7. Personalizar Ajustes</a></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h3 class="text-xs font-bold text-gray-500 mb-4 uppercase tracking-widest">Avanzado</h3>
-          <ul class="space-y-3">
-            <li><a href="#documentacion" class="text-gray-400 hover:text-gray-200 transition-colors text-[14px] block">Documentación Técnica</a></li>
           </ul>
         </div>
 
@@ -181,98 +172,6 @@ import DocEN from '../components/DocEN.astro';
 
       </div>
 
-      <hr class="border-white/[0.05] my-20" />
-
-      <!-- Sección 3: Documentación Técnica (Markdown) -->
-      <section id="documentacion" class="scroll-mt-28 relative">
-        <h2 class="text-3xl font-bold text-white mb-8" id="doc-title">Documentación Técnica</h2>
-        
-        <div class="w-full min-w-0 overflow-x-auto">
-          <div id="doc-es" class="prose prose-invert prose-gray prose-a:text-blue-400 hover:prose-a:text-blue-300 max-w-none prose-pre:bg-[#111111] prose-pre:border prose-pre:border-white/10">
-            <DocES />
-          </div>
-          
-          <div id="doc-en" class="hidden prose prose-invert prose-gray prose-a:text-blue-400 hover:prose-a:text-blue-300 max-w-none prose-pre:bg-[#111111] prose-pre:border prose-pre:border-white/10">
-            <DocEN />
-          </div>
-        </div>
-      </section>
-
     </main>
   </div>
 </Layout>
-
-<style is:global>
-  /* Documentation section */
-  #documentacion pre {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
-    font-size: 0.85em;
-    line-height: 1.2;
-    overflow-x: auto;
-    white-space: pre;
-    padding: 1.5rem;
-    max-width: 100%;
-  }
-  
-  #documentacion table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1.5rem;
-    margin-bottom: 2rem;
-    font-size: 0.9em;
-    display: table !important;
-    overflow: visible !important;
-  }
-  #documentacion thead th {
-    background-color: rgba(255, 255, 255, 0.03);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0.75rem 1rem;
-    text-align: left;
-    color: #e5e5e5;
-    font-weight: 600;
-    white-space: nowrap;
-  }
-  #documentacion tbody td {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 0.75rem 1rem;
-    color: #a3a3a3;
-    white-space: nowrap;
-  }
-  #documentacion tbody tr:hover td {
-    background-color: rgba(255, 255, 255, 0.02);
-  }
-
-  /* Wrapper for scrollable tables */
-  .table-wrap {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin: 1.5rem 0;
-    border-radius: 0.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(17, 17, 17, 0.5);
-  }
-  .table-wrap table {
-    margin: 0 !important;
-  }
-</style>
-
-<script>
-  document.addEventListener('langToggled', (e) => {
-    const isEn = e.detail === 'en';
-    const docEs = document.getElementById('doc-es');
-    const docEn = document.getElementById('doc-en');
-    const docTitle = document.getElementById('doc-title');
-    
-    if (docEs && docEn) {
-      if (isEn) {
-        docEs.classList.add('hidden');
-        docEn.classList.remove('hidden');
-        if(docTitle) docTitle.textContent = "Technical Documentation";
-      } else {
-        docEs.classList.remove('hidden');
-        docEn.classList.add('hidden');
-        if(docTitle) docTitle.textContent = "Documentación Técnica";
-      }
-    }
-  });
-</script>
