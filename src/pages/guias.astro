@@ -50,7 +50,7 @@ import DocEN from '../components/DocEN.astro';
     </aside>
 
     <!-- Contenido Principal -->
-    <main class="flex-1 min-w-0 w-full max-w-3xl">
+    <main class="flex-1 min-w-0 w-full max-w-3xl overflow-hidden">
       
       <div class="mb-16">
         <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">Documentación y Guías</h1>
@@ -187,7 +187,7 @@ import DocEN from '../components/DocEN.astro';
       <section id="documentacion" class="scroll-mt-28 relative">
         <h2 class="text-3xl font-bold text-white mb-8" id="doc-title">Documentación Técnica</h2>
         
-        <div class="w-full min-w-0">
+        <div class="w-full min-w-0 overflow-x-auto">
           <div id="doc-es" class="prose prose-invert prose-gray prose-a:text-blue-400 hover:prose-a:text-blue-300 max-w-none prose-pre:bg-[#111111] prose-pre:border prose-pre:border-white/10">
             <DocES />
           </div>
