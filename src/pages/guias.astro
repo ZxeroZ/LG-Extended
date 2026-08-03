@@ -1,0 +1,541 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import * as Doc from '../../LG_Extended/DOCUMENTACION.md';
+import * as DocEN from '../../LG_Extended/DOCUMENTACION_EN.md';
+---
+
+<Layout title="Guías - LG Extended">
+  <Navbar />
+  
+  <div class="max-w-7xl mx-auto px-6 pt-32 pb-24 flex flex-col md:flex-row gap-12 lg:gap-20 relative z-10">
+    
+    <!-- Menú Lateral -->
+    <aside class="w-full md:w-64 lg:w-72 flex-shrink-0">
+      <div class="md:sticky md:top-28 space-y-10">
+        
+        <div>
+          <h3 class="text-xs font-bold text-gray-500 mb-4 uppercase tracking-widest">Comenzar</h3>
+          <ul class="space-y-3">
+            <li>
+              <a href="#instalacion" class="text-gray-300 hover:text-white font-medium text-[15px] transition-colors flex items-center gap-2">
+                <svg class="w-4 h-4 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                Guía de instalación
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-xs font-bold text-gray-500 mb-4 uppercase tracking-widest">Uso de Hooks y Apps</h3>
+          <ul class="space-y-3">
+            <li><a href="#bateria" class="text-gray-400 hover:text-gray-200 transition-colors text-[14px] block">1. Hook de batería</a></li>
+            <li><a href="#ios" class="text-gray-400 hover:text-gray-200 transition-colors text-[14px] block">2. Multitarea iOS</a></li>
+            <li><a href="#dpi" class="text-gray-400 hover:text-gray-200 transition-colors text-[14px] block">3. Escala DPI por app</a></li>
+            <li><a href="#bypass" class="text-gray-400 hover:text-gray-200 transition-colors text-[14px] block">4. Bypass de Seguridad</a></li>
+            <li><a href="#iconos" class="text-gray-400 hover:text-gray-200 transition-colors text-[14px] block">5. Iconos de Ajustes</a></li>
+            <li><a href="#qs" class="text-gray-400 hover:text-gray-200 transition-colors text-[14px] block">6. Ajustes Rápidos MIUI</a></li>
+            <li><a href="#personalizar" class="text-gray-400 hover:text-gray-200 transition-colors text-[14px] block">7. Personalizar Ajustes</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-xs font-bold text-gray-500 mb-4 uppercase tracking-widest">Avanzado</h3>
+          <ul class="space-y-3">
+            <li><a href="#documentacion" class="text-gray-400 hover:text-gray-200 transition-colors text-[14px] block">Documentación Técnica</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main class="flex-1 max-w-3xl">
+      
+      <div class="mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">Documentación y Guías</h1>
+        <p class="text-lg text-gray-400 leading-relaxed">
+          Aprende cómo instalar y configurar cada aspecto de LG Extended para aprovechar al máximo tu dispositivo.
+        </p>
+      </div>
+
+      <!-- Sección 1: Instalación -->
+      <section id="instalacion" class="mb-20 scroll-mt-28">
+        <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+          <span class="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 text-sm">1</span>
+          Guía de Instalación
+        </h2>
+        
+        <div class="p-6 rounded-2xl bg-[#111111] border border-white/[0.08] text-gray-300 space-y-4">
+          <p class="leading-relaxed">El proceso de instalación es sencillo. Sigue estos pasos cuidadosamente:</p>
+          <ol class="list-decimal list-inside space-y-3 ml-2 marker:text-gray-500">
+            <li><strong class="text-white font-medium">Descargar el APK:</strong> Obtén la última versión de LG Extended e instálala.</li>
+            <li><strong class="text-white font-medium">Dar permisos Root:</strong> Concede permisos de superusuario mediante Magisk o KSU.</li>
+            <li><strong class="text-white font-medium">Activar en LSPosed:</strong> Abre LSPosed, activa el módulo y asegúrate de marcar las siguientes aplicaciones:
+              <ul class="list-disc list-inside ml-6 mt-2 space-y-1 text-gray-400 text-sm">
+                <li><code class="text-gray-300 bg-white/5 px-1.5 py-0.5 rounded">Ajustes</code> (o <code class="text-gray-300 bg-white/5 px-1.5 py-0.5 rounded">com.android.settings</code>)</li>
+                <li><code class="text-gray-300 bg-white/5 px-1.5 py-0.5 rounded">Inicio</code> (o <code class="text-gray-300 bg-white/5 px-1.5 py-0.5 rounded">com.lge.launcher3</code>)</li>
+                <li><code class="text-gray-300 bg-white/5 px-1.5 py-0.5 rounded">System UI</code> (o <code class="text-gray-300 bg-white/5 px-1.5 py-0.5 rounded">com.android.systemui</code>)</li>
+                <li><code class="text-gray-300 bg-white/5 px-1.5 py-0.5 rounded">Framework del sistema</code> (o <code class="text-gray-300 bg-white/5 px-1.5 py-0.5 rounded">android</code> / <code class="text-gray-300 bg-white/5 px-1.5 py-0.5 rounded">system</code>)</li>
+              </ul>
+            </li>
+            <li><strong class="text-white font-medium">Reiniciar el teléfono</strong> para que LSPosed aplique los ganchos (hooks) correctamente en el sistema.</li>
+          </ol>
+        </div>
+      </section>
+
+      <hr class="border-white/[0.05] mb-20" />
+
+      <!-- Sección 2: Uso de Hooks y Apps -->
+      <div class="mb-10">
+        <h2 class="text-3xl font-bold text-white mb-4">Uso de Hooks y Apps</h2>
+        <p class="text-gray-400">Configuración detallada de cada función dentro de la aplicación.</p>
+      </div>
+
+      <div class="space-y-16">
+        
+        <!-- 2.1 Batería -->
+        <section id="bateria" class="scroll-mt-28">
+          <h3 class="text-xl font-semibold text-white mb-3">1. Hook de la Batería</h3>
+          <p class="text-gray-400 leading-relaxed mb-4">
+            Simplemente elige el icono de la batería en la app y dale clic al <strong class="text-gray-300">botón flotante para reiniciar la interfaz</strong>. En caso de que no se aplique, reinicia el teléfono nuevamente.
+          </p>
+          <ul class="list-disc list-inside text-gray-400 space-y-2">
+            <li>Puedes cambiar los colores de los diferentes estados: cargando, normal y batería baja.</li>
+            <li>Tienes <strong>4 estilos disponibles</strong> para elegir.</li>
+          </ul>
+        </section>
+
+        <!-- 2.2 Multitarea iOS -->
+        <section id="ios" class="scroll-mt-28">
+          <h3 class="text-xl font-semibold text-white mb-3">2. Hook de Estilos iOS</h3>
+          <p class="text-gray-400 leading-relaxed">
+            Cuando lo habilitas, activas la <strong class="text-gray-300">multitarea estilo iOS</strong> (es decir, diseño apilado de las aplicaciones recientes). Para que surta efecto, dale al botón flotante de reiniciar UI o reinicia el teléfono.
+          </p>
+        </section>
+
+        <!-- 2.3 Escala DPI -->
+        <section id="dpi" class="scroll-mt-28">
+          <h3 class="text-xl font-semibold text-white mb-3">3. Escala DPI</h3>
+          <p class="text-gray-400 leading-relaxed mb-4">
+            Permite cambiar el DPI (densidad de píxeles) por aplicación de forma individual.
+          </p>
+          <div class="bg-white/5 border border-white/10 p-5 rounded-xl text-sm text-gray-300 leading-relaxed">
+            <strong class="text-white block mb-2">Cómo funciona:</strong> 
+            Para que funcione, tienes que marcar la app deseada en LSPosed. Es decir, si quieres cambiar el DPI de WhatsApp, tienes que activar WhatsApp en LSPosed. Los cambios serán automáticos al cambiar el DPI, ya que si concediste root, la app ejecutará un comando para matarla y aplicar los cambios. <br/>
+            <span class="text-gray-500 mt-3 block text-xs">* Solo está probado con Magisk.</span>
+          </div>
+        </section>
+
+        <!-- 2.4 Bypass -->
+        <section id="bypass" class="scroll-mt-28">
+          <h3 class="text-xl font-semibold text-white mb-3">4. Bypass de Seguridad</h3>
+          <p class="text-gray-400 leading-relaxed">
+            De momento solo tenemos una opción y es la clásica <code class="text-gray-300 bg-white/10 px-1.5 py-0.5 rounded text-sm font-mono">BYPASS FLAG SECURE</code>. Esta opción permite tomar capturas de pantalla en aplicaciones que invocan el método para bloquear capturas, como apps bancarias o las fotos de "ver una vez" de WhatsApp.
+          </p>
+        </section>
+
+        <!-- 2.5 Iconos HyperOS -->
+        <section id="iconos" class="scroll-mt-28">
+          <h3 class="text-xl font-semibold text-white mb-3">5. Iconos de Ajustes (HyperOS)</h3>
+          <p class="text-gray-400 leading-relaxed">
+            Antiguamente usábamos iconos similares a los de One UI. Ahora usamos los iconos de <strong class="text-gray-300">HyperOS</strong>. Esta opción reemplaza todos los iconos de las secciones dentro de la aplicación de Ajustes del teléfono. <em>Esto solo se aplica a la app de ajustes.</em>
+          </p>
+        </section>
+
+        <!-- 2.6 QS MIUI -->
+        <section id="qs" class="scroll-mt-28">
+          <h3 class="text-xl font-semibold text-white mb-4">6. Ajustes Rápidos MIUI</h3>
+          <p class="text-gray-400 leading-relaxed mb-6">Dentro de este módulo tenemos 3 opciones principales:</p>
+          
+          <div class="space-y-6">
+            <div class="pl-4 border-l-2 border-white/10">
+              <h4 class="text-white font-medium mb-1">6.1 Habilitar MIUI QS</h4>
+              <p class="text-gray-400 text-sm leading-relaxed">Cambia la forma de los toggles de los ajustes rápidos por unos más modernos. Esto también habilita o deshabilita las transparencias en los ajustes rápidos.</p>
+            </div>
+            
+            <div class="pl-4 border-l-2 border-white/10">
+              <h4 class="text-white font-medium mb-1">6.2 Ocultar flecha de expansión</h4>
+              <p class="text-gray-400 text-sm leading-relaxed">Oculta la flecha para expandir notificaciones. Aún podrás seguir expandiendo las notificaciones deslizando; esta opción solo oculta el indicador visual.</p>
+            </div>
+            
+            <div class="pl-4 border-l-2 border-white/10">
+              <h4 class="text-white font-medium mb-1">6.3 Separate notifications cards</h4>
+              <p class="text-gray-400 text-sm leading-relaxed">Esta opción cambia el bloque de notificaciones de LG por un estilo de notificaciones separadas y usa un nuevo método para ocultar las que ya no caben.</p>
+            </div>
+          </div>
+
+          <div class="mt-6 bg-white/5 border border-white/10 p-4 rounded-xl text-sm text-gray-300 leading-relaxed">
+            <strong class="text-white font-medium block mb-1">Nota importante:</strong> 
+            Si no desaparecen los cambios cuando se apaga la opción, tienes que reiniciar el teléfono. Si aún así no se apagan, entonces desmarca System UI en LSPosed.
+          </div>
+        </section>
+
+        <!-- 2.7 Personalizar Ajustes -->
+        <section id="personalizar" class="scroll-mt-28">
+          <h3 class="text-xl font-semibold text-white mb-3">7. Personalizar Ajustes</h3>
+          <p class="text-gray-400 leading-relaxed">
+            Permite inyectar una nueva tarjeta (card) visual en la aplicación nativa de Ajustes, permitiendo cambiar el logo, el título y la descripción.
+          </p>
+        </section>
+
+      </div>
+
+      <hr class="border-white/[0.05] my-20" />
+
+      <!-- Sección 3: Documentación Técnica (Markdown) -->
+      <section id="documentacion" class="scroll-mt-28 relative">
+        <h2 class="text-3xl font-bold text-white mb-8" id="doc-title">Documentación Técnica</h2>
+        
+        <div id="doc-es" class="prose prose-invert prose-gray prose-a:text-blue-400 hover:prose-a:text-blue-300 max-w-none prose-pre:bg-[#111111] prose-pre:border prose-pre:border-white/10 prose-img:rounded-xl">
+          <Doc.Content />
+        </div>
+        
+        <div id="doc-en" class="hidden prose prose-invert prose-gray prose-a:text-blue-400 hover:prose-a:text-blue-300 max-w-none prose-pre:bg-[#111111] prose-pre:border prose-pre:border-white/10 prose-img:rounded-xl">
+          <DocEN.Content />
+        </div>
+      </section>
+
+    </main>
+  </div>
+</Layout>
+
+<style is:global>
+  /* Fix ASCII art diagrams to ensure they remain perfectly aligned */
+  #documentacion pre {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+    font-size: 0.85em;
+    line-height: 1.2;
+    overflow-x: auto;
+    white-space: pre;
+    padding: 1.5rem;
+  }
+  
+  /* Fix Markdown tables to look elegant and structured */
+  #documentacion table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.9em;
+  }
+  #documentacion thead th {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 1rem;
+    text-align: left;
+    color: #e5e5e5;
+    font-weight: 600;
+  }
+  #documentacion tbody td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.75rem 1rem;
+    color: #a3a3a3;
+  }
+  #documentacion tbody tr:hover td {
+    background-color: rgba(255, 255, 255, 0.02);
+  }
+
+  /* Enhanced Mermaid Diagrams */
+  .mermaid-wrapper {
+    position: relative;
+    background: linear-gradient(145deg, rgba(17, 17, 17, 0.9), rgba(10, 10, 10, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    box-shadow: 
+      0 4px 24px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+  }
+  .mermaid-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  }
+  .mermaid-wrapper:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+    transform: translateY(-2px);
+  }
+  .mermaid-wrapper .mermaid {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  }
+  .mermaid-wrapper .mermaid::-webkit-scrollbar {
+    height: 6px;
+  }
+  .mermaid-wrapper .mermaid::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .mermaid-wrapper .mermaid::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+  .mermaid-wrapper .mermaid::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .mermaid-wrapper .mermaid svg {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+  }
+
+  /* Mermaid node hover effects */
+  .mermaid .node:hover > * {
+    filter: brightness(1.15);
+  }
+  .mermaid .edgePath:hover path {
+    stroke-width: 2px !important;
+  }
+  .mermaid .edgeLabel {
+    background: rgba(10, 10, 10, 0.85) !important;
+    padding: 2px 6px !important;
+    border-radius: 4px !important;
+    font-size: 0.75em !important;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .mermaid-wrapper {
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border-radius: 0.875rem;
+    }
+    .mermaid-wrapper .mermaid {
+      padding: 0.5rem 0;
+    }
+    .mermaid-btn {
+      opacity: 1;
+      padding: 0.375rem 0.75rem;
+      font-size: 0.75rem;
+    }
+  }
+
+  /* Fullscreen Mermaid Modal */
+  .mermaid-modal {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background: rgba(5, 5, 8, 0.98);
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+    animation: modalFadeIn 0.3s ease-out;
+  }
+  @keyframes modalFadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .mermaid-modal .mermaid {
+    max-height: 85vh;
+  }
+  .mermaid-modal .mermaid svg {
+    max-width: 90vw !important;
+    max-height: 85vh !important;
+    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.5));
+  }
+  .mermaid-modal .mermaid-btn {
+    opacity: 1;
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  .mermaid-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.2s ease;
+    z-index: 10000;
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+  .mermaid-wrapper:hover .mermaid-btn {
+    opacity: 1;
+  }
+  .mermaid-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: white;
+    transform: scale(1.05);
+  }
+</style>
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  // Language toggle listener for documentation
+  document.addEventListener('langToggled', (e) => {
+    const isEn = e.detail === 'en';
+    const docEs = document.getElementById('doc-es');
+    const docEn = document.getElementById('doc-en');
+    const docTitle = document.getElementById('doc-title');
+    
+    if (docEs && docEn) {
+      if (isEn) {
+        docEs.classList.add('hidden');
+        docEn.classList.remove('hidden');
+        if(docTitle) docTitle.textContent = "Technical Documentation";
+      } else {
+        docEs.classList.remove('hidden');
+        docEn.classList.add('hidden');
+        if(docTitle) docTitle.textContent = "Documentación Técnica";
+      }
+    }
+  });
+
+  mermaid.initialize({ 
+    startOnLoad: false, 
+    theme: 'dark',
+    themeVariables: {
+      primaryColor: '#1e1b4b',
+      primaryTextColor: '#e0e7ff',
+      primaryBorderColor: '#4f46e5',
+      lineColor: '#6366f1',
+      secondaryColor: '#064e3b',
+      tertiaryColor: '#0f172a',
+      fontFamily: 'Inter, system-ui, sans-serif',
+      fontSize: '14px',
+      nodeBorder: '#4f46e5',
+      mainBkg: '#1e1b4b',
+      nodeBkg: '#1e1b4b',
+      clusterBkg: '#0f172a',
+      clusterBorder: '#334155',
+      titleColor: '#f8fafc',
+      edgeLabelBackground: 'rgba(10, 10, 10, 0.85)',
+      textColor: '#e2e8f0',
+      signalColor: '#059669',
+      signalTextColor: '#d1fae5',
+      labelBoxBkgColor: '#1e1b4b',
+      labelBoxBorderColor: '#4f46e5',
+      labelTextColor: '#e0e7ff',
+      loopTextColor: '#f8fafc',
+      activationBorderColor: '#4f46e5',
+      activationBkgColor: '#1e1b4b',
+      sequenceNumberColor: '#f8fafc',
+      noteBkgColor: '#1e1b4b',
+      noteTextColor: '#e0e7ff',
+      noteBorderColor: '#4f46e5',
+      activationTextColor: '#e0e7ff',
+    },
+    flowchart: { 
+      curve: 'basis',
+      padding: 20,
+      htmlLabels: true,
+      nodeSpacing: 50,
+      rankSpacing: 60,
+    },
+    sequence: {
+      diagramMarginX: 30,
+      diagramMarginY: 20,
+      actorMargin: 80,
+      width: 180,
+      height: 50,
+      boxMargin: 10,
+      boxTextMargin: 5,
+      noteMargin: 15,
+      messageMargin: 40,
+      mirrorActors: true,
+      useMaxWidth: true,
+    },
+  });
+  
+  const renderMermaid = async () => {
+    const blocks = document.querySelectorAll('pre[data-language="mermaid"], pre code.language-mermaid');
+    
+    blocks.forEach((block) => {
+      const code = block.textContent;
+      
+      const wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-wrapper relative group';
+      
+      const container = document.createElement('div');
+      container.className = 'mermaid flex justify-center py-4 w-full overflow-x-auto cursor-pointer';
+      container.textContent = code;
+      
+      const btn = document.createElement('button');
+      btn.className = 'mermaid-btn flex items-center gap-2';
+      
+      const iconExpand = `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>`;
+      const iconClose = `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+      
+      btn.innerHTML = `${iconExpand} <span>Ampliar</span>`;
+      
+      const toggleModal = (e) => {
+        if (e) e.stopPropagation();
+        const parentContainer = wrapper.closest('.relative.z-10');
+        wrapper.classList.toggle('mermaid-modal');
+        const isOpen = wrapper.classList.contains('mermaid-modal');
+        btn.innerHTML = isOpen ? `${iconClose} <span>Cerrar</span>` : `${iconExpand} <span>Ampliar</span>`;
+        if (isOpen) {
+           document.body.style.overflow = 'hidden';
+           if (parentContainer) parentContainer.style.zIndex = '9999';
+        } else {
+           document.body.style.overflow = 'auto';
+           if (parentContainer) parentContainer.style.zIndex = '10';
+        }
+      };
+
+      btn.onclick = toggleModal;
+      wrapper.onclick = (e) => {
+        if (wrapper.classList.contains('mermaid-modal') && e.target === wrapper) {
+           toggleModal();
+        }
+      };
+      
+      wrapper.appendChild(container);
+      wrapper.appendChild(btn);
+      
+      const targetToReplace = block.tagName === 'PRE' ? block : block.parentElement;
+      targetToReplace.replaceWith(wrapper);
+    });
+    
+    try {
+      await mermaid.run({ querySelector: '.mermaid' });
+    } catch (e) {
+      console.error("Mermaid render error", e);
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderMermaid);
+  } else {
+    renderMermaid();
+  }
+</script>

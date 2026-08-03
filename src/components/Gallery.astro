@@ -1,0 +1,45 @@
+---
+const images = [
+  { src: "/assets/nuevos_ajustes.jpeg", alt: "Nuevos Ajustes", caption: "UI modernizada con tarjetas" },
+  { src: "/assets/qs_nuevo.jpeg", alt: "Nuevo Panel QS", caption: "Panel rápido translúcido" },
+  { src: "/assets/multitarea_ios_1.jpeg", alt: "Multitarea Estilo 1", caption: "Vista de recientes tipo iOS" },
+  { src: "/assets/multitarea_ios_2.jpeg", alt: "Multitarea Estilo 2", caption: "Tarjetas apiladas y escaladas" },
+  { src: "/assets/qs_nuevo_2.jpeg", alt: "Variante QS", caption: "Opciones compactas y accesibles" },
+  { src: "/assets/hooks_app.jpeg", alt: "Hooks de la App", caption: "Panel de control del módulo" }
+];
+---
+
+<section id="gallery" class="py-24 px-6 relative z-10 max-w-6xl mx-auto">
+  <div class="mb-16">
+    <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4">En Acción</h2>
+    <p class="text-gray-400 font-light text-base max-w-2xl leading-relaxed">
+      Explora cómo se ve LG Extended aplicado directamente en el sistema. Cada captura es real, sin retoques.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+    {images.map((image) => (
+      <div class="flex flex-col items-center gap-4 group">
+        <div class="relative w-full max-w-[240px] rounded-3xl p-1.5 bg-[#111111] border border-white/[0.08] hover:border-white/20 transition-all duration-500">
+          
+          <div class="relative rounded-2xl overflow-hidden bg-black aspect-[9/19.5]">
+            <!-- Notch placeholder -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-5 bg-black rounded-b-xl z-20"></div>
+            
+            <img
+              src={image.src}
+              alt={image.alt}
+              class="w-full h-full object-cover relative z-10 group-hover:scale-105 transition-transform duration-700 ease-out"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        
+        <div class="text-center px-2">
+          <p class="text-sm font-medium text-gray-200">{image.alt}</p>
+          <p class="text-xs text-gray-500 mt-1">{image.caption}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

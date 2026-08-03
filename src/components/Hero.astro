@@ -1,0 +1,51 @@
+---
+---
+<section class="relative pt-32 pb-20 flex flex-col items-center justify-center text-center overflow-hidden min-h-[75vh]">
+  
+  <!-- Version Badge -->
+  <div class="mb-8 animate-fade-in-up">
+    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-gray-400 text-sm font-medium hover:bg-white/[0.08] hover:text-white transition-all cursor-pointer">
+      <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+      LG Extended V1.5 is now available
+      <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+    </a>
+  </div>
+
+  <!-- Main Title -->
+  <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-4 animate-fade-in-up delay-100 flex flex-col items-center leading-tight uppercase">
+    <span class="text-white">LG Extended</span>
+  </h1>
+
+  <!-- Subtitle -->
+  <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 px-4 animate-fade-in-up delay-200 leading-relaxed italic">
+    "Stock is just a suggestion" by ZxeroZ
+  </p>
+
+  <!-- CTA Buttons -->
+  <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up delay-300">
+    <a href="#features" class="w-full sm:w-auto px-6 py-3 rounded-md bg-white text-black font-medium hover:bg-gray-200 transition-colors">
+      Explore Features
+    </a>
+    <a href="#gallery" class="w-full sm:w-auto px-6 py-3 rounded-md bg-transparent border border-white/20 text-gray-300 font-medium hover:bg-white/5 hover:text-white transition-colors">
+      View Gallery
+    </a>
+  </div>
+</section>
+
+<style>
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

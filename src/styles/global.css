@@ -1,0 +1,173 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: #050508;
+    color: #e5e5e5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-accent {
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .fade-in {
+    animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  .fade-in-d1 { animation-delay: 80ms; }
+  .fade-in-d2 { animation-delay: 160ms; }
+  .fade-in-d3 { animation-delay: 240ms; }
+  .fade-in-d4 { animation-delay: 320ms; }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(30px, -20px) scale(1.05); }
+    50% { transform: translate(-20px, 15px) scale(0.95); }
+    75% { transform: translate(15px, 25px) scale(1.02); }
+  }
+
+  @keyframes float-slow-reverse {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-25px, 20px) scale(0.95); }
+    50% { transform: translate(20px, -15px) scale(1.05); }
+    75% { transform: translate(-15px, -25px) scale(0.98); }
+  }
+
+  @keyframes float-slow-alt {
+    0%, 100% { transform: translate(0, 0) scale(1.02); }
+    33% { transform: translate(20px, 25px) scale(0.97); }
+    66% { transform: translate(-30px, -10px) scale(1.04); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Phone mockup - Drop/Teardrop notch */
+  .phone-mockup {
+    position: relative;
+    background: #111;
+    border-radius: 28px;
+    padding: 10px;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.06),
+      0 20px 60px -10px rgba(0,0,0,0.7),
+      0 0 100px -20px rgba(99,102,241,0.15);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .phone-mockup:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.1),
+      0 30px 80px -10px rgba(0,0,0,0.8),
+      0 0 120px -20px rgba(99,102,241,0.25);
+  }
+
+  /* Drop/teardrop notch */
+  .phone-mockup::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: #000;
+    border-radius: 50%;
+    z-index: 10;
+  }
+
+  .phone-mockup::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, #1a1a2e 40%, #0d0d15 100%);
+    border-radius: 50%;
+    z-index: 11;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .phone-screen {
+    border-radius: 20px;
+    overflow: hidden;
+    background: #000;
+    aspect-ratio: 9/19.5;
+  }
+
+  .phone-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .phone-mockup:hover .phone-screen img {
+    transform: scale(1.05);
+  }
+
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}

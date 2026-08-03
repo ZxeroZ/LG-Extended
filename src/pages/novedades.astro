@@ -1,0 +1,165 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+---
+
+<Layout title="Novedades y Releases - LG Extended">
+  <Navbar />
+  
+  <div class="max-w-4xl mx-auto px-6 pt-32 pb-24">
+    
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-4 tracking-tight" id="title-releases">Novedades y Releases</h1>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto" id="desc-releases">Historial de actualizaciones, funciones nuevas, correcciones y descargas oficiales de LG Extended.</p>
+    </div>
+
+    <!-- Disclaimer Root -->
+    <div class="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-6 mb-12 flex items-start gap-4 backdrop-blur-sm">
+      <div class="p-3 bg-blue-500/20 rounded-xl text-blue-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-1 text-lg" id="title-root">Nota sobre el acceso Root</h3>
+        <p class="text-gray-400 text-sm leading-relaxed" id="desc-root">
+          Nuestra aplicación solo requiere y utiliza permisos Root para un único propósito: <strong>reiniciar aplicaciones específicas del sistema</strong> (como SystemUI, el Launcher o los Ajustes) para que los hooks de LSPosed surtan efecto de inmediato. Absolutamente nada más. No modificamos archivos del sistema ni realizamos operaciones invasivas.
+        </p>
+      </div>
+    </div>
+
+    <div class="space-y-8">
+      
+      <!-- Version 1.5 -->
+      <div class="w-full p-8 rounded-3xl bg-[#111111] border border-blue-500/30 shadow-lg shadow-blue-500/5 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 pb-6 border-b border-white/5 gap-4">
+          <div>
+            <h3 class="text-3xl font-bold text-white mb-2">Versión 1.5</h3>
+            <p class="text-gray-400 text-sm" id="v15-date">Agosto 2026</p>
+          </div>
+          <span class="px-4 py-1.5 rounded-full bg-blue-500/20 text-blue-400 text-sm font-semibold uppercase tracking-wider self-start md:self-auto" id="badge-actual">Actual</span>
+        </div>
+        
+        <div class="space-y-6">
+          <div>
+            <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3" id="title-nov">Novedades</h4>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-gray-300 text-[15px]">
+                <span class="text-green-400 mt-1 font-bold">+</span> <span id="v15-1">Añadido soporte y hooks para el panel de Ajustes Rápidos (QS Panel).</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-300 text-[15px]">
+                <span class="text-green-400 mt-1 font-bold">+</span> <span id="v15-2">Integradas nuevas transparencias y estilos visuales para las notificaciones del sistema.</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-300 text-[15px]">
+                <span class="text-green-400 mt-1 font-bold">+</span> <span id="v15-3">Nueva opción para ocultar visualmente el indicador de expansión de notificaciones.</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-300 text-[15px]">
+                <span class="text-green-400 mt-1 font-bold">+</span> <span id="v15-4">Implementada la función de cambio de idioma dentro de los ajustes de la propia aplicación.</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3" id="title-fix">Correcciones</h4>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-gray-300 text-[15px]">
+                <span class="text-blue-400 mt-1 font-bold">✓</span> <span id="v15-f1">Solucionados de forma definitiva los errores gráficos y de escala en la multitarea de iOS.</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-300 text-[15px]">
+                <span class="text-blue-400 mt-1 font-bold">✓</span> <span id="v15-f2">Reparado el problema de renderizado y bordes en el icono de batería estilo iOS 17.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-red-500/5 border border-red-500/10 rounded-2xl p-5 mt-6">
+            <h4 class="text-sm font-semibold text-red-400 uppercase tracking-wider mb-3 flex items-center gap-2" id="title-bug">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+              Bugs Actuales Conocidos
+            </h4>
+            <p class="text-gray-400 text-[15px] leading-relaxed" id="v15-b1">Cuando se acumulan demasiadas notificaciones, la opción de "Separación de Tarjetas" provoca que la tarjeta inferior se vuelva ligeramente más estrecha. Es un detalle puramente visual que no compromete el funcionamiento del dispositivo.</p>
+          </div>
+        </div>
+        
+        <div class="mt-8 pt-6 border-t border-white/5">
+          <a href="/releases/LG_Extended_v1.5.apk" download class="w-full md:w-auto inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white py-3 px-8 rounded-xl font-medium transition-colors" id="btn-download">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+            Descargar APK v1.5
+          </a>
+        </div>
+      </div>
+
+      <!-- Version 1.2 -->
+      <div class="w-full p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/[0.07] transition-colors">
+        <div class="mb-6 pb-6 border-b border-white/5">
+          <h3 class="text-3xl font-bold text-white mb-2">Versión 1.2</h3>
+        </div>
+        
+        <div class="space-y-6">
+          <div>
+            <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Novedades</h4>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-gray-400 text-[15px]">
+                <span class="text-white/30 mt-1">•</span> <span id="v12-1">Rediseño integral de la interfaz de usuario de LG Extended.</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-400 text-[15px]">
+                <span class="text-white/30 mt-1">•</span> <span id="v12-2">Integrados los hooks para el reemplazo completo de iconos en la aplicación nativa de Ajustes de LG.</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-400 text-[15px]">
+                <span class="text-white/30 mt-1">•</span> <span id="v12-3">Nueva capacidad para inyectar tarjetas de información personalizadas dentro de los Ajustes del sistema.</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="bg-white/5 border border-white/5 rounded-2xl p-5 mt-6">
+            <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Bugs Presentes en esta versión</h4>
+            <p class="text-gray-400 text-[15px] italic" id="v12-b1">Los mismos errores de renderizado en la multitarea y el icono de batería heredados de la versión 1.0.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Version 1.0 -->
+      <div class="w-full p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/[0.07] transition-colors">
+        <div class="mb-6 pb-6 border-b border-white/5 flex items-center gap-4">
+          <h3 class="text-3xl font-bold text-white">Versión 1.0</h3>
+          <span class="text-sm font-normal text-gray-500" id="v10-badge">(Lanzamiento Inicial)</span>
+        </div>
+        
+        <div class="space-y-6">
+          <div>
+            <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Novedades Iniciales</h4>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-gray-400 text-[15px]">
+                <span class="text-white/30 mt-1">•</span> <span id="v10-1">Implementación inicial de los hooks de multitarea con estilo iOS, incluyendo efectos de apilado y escala de tarjetas.</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-400 text-[15px]">
+                <span class="text-white/30 mt-1">•</span> <span id="v10-2">Sistema de modificación de iconos de batería con selectores de colores integrados.</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-400 text-[15px]">
+                <span class="text-white/30 mt-1">•</span> <span id="v10-3">Capacidad para saltar la restricción de capturas de pantalla (Bypass Flag Secure) en aplicaciones protegidas.</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-400 text-[15px]">
+                <span class="text-white/30 mt-1">•</span> <span id="v10-4">Nueva función para escalar la densidad de pantalla (DPI) de manera independiente por cada aplicación.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white/5 border border-white/5 rounded-2xl p-5 mt-6">
+            <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Bugs Conocidos</h4>
+            <ul class="space-y-4">
+              <li class="text-gray-400 text-[15px] leading-relaxed">
+                <span class="text-white/30 mr-2">•</span> <span id="v10-b1">Múltiples errores de escala en la multitarea al usar el gesto rápido "Quick Switch".</span>
+              </li>
+              <li class="text-gray-400 text-[15px] leading-relaxed">
+                <span class="text-white/30 mr-2">•</span> <span id="v10-b3">Las tarjetas de la multitarea presentaban parpadeos grises y efectos extraños al ser invocadas.</span>
+              </li>
+              <li class="text-gray-400 text-[15px] leading-relaxed">
+                <span class="text-white/30 mr-2">•</span> <span id="v10-b2">El icono de batería estilo iOS 17 sufría de problemas de dimensiones y no permitía modificar el grosor de su borde exterior.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</Layout>

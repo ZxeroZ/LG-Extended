@@ -1,11 +1,26 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Requirements from '../components/Requirements.astro';
+import Features from '../components/Features.astro';
+import Gallery from '../components/Gallery.astro';
+import FAQ from '../components/FAQ.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="LG Extended - UI Customizer for LG V60">
+  <Navbar />
+  
+  <main>
+    <Hero />
+    <Features />
+    <Gallery />
+    <Requirements />
+    <FAQ />
+  </main>
+
+  <footer class="py-12 text-center border-t border-white/[0.05] mt-10 bg-transparent relative z-10">
+    <p class="text-gray-400 text-sm">© {new Date().getFullYear()} LG Extended. All rights reserved.</p>
+    <p class="mt-2 text-xs text-gray-500">Developed with ❤️ by ZxeroZ</p>
+  </footer>
 </Layout>

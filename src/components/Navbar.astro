@@ -1,0 +1,230 @@
+---
+---
+<nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 backdrop-blur-xl bg-[#0a0a0a]/70 border-b border-white/10">
+  <div class="max-w-6xl mx-auto flex items-center justify-between">
+    
+    <!-- Logo and Brand -->
+    <a href="/" class="flex items-center gap-3 group">
+      <img src="/assets/icono.png" alt="LG Extended Logo" class="w-9 h-9 rounded-lg border border-white/10 object-cover group-hover:scale-105 transition-transform" />
+      <span class="text-lg font-medium tracking-tight text-white group-hover:text-gray-200 transition-colors">LG Extended</span>
+    </a>
+
+    <!-- Desktop Actions -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="/" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">
+        Inicio
+      </a>
+      <a href="/novedades" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">
+        Novedades
+      </a>
+      <a href="/guias" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">
+        Guías
+      </a>
+      <button class="lang-toggle-btn text-sm font-medium text-gray-400 hover:text-white transition-colors">
+        EN
+      </button>
+      <a href="https://github.com/ZxeroZ/LG_Extended" target="_blank" class="px-4 py-1.5 rounded-md bg-white text-black text-sm font-medium hover:bg-gray-200 transition-colors">
+        GitHub
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn" class="md:hidden flex flex-col items-center justify-center gap-1.5 w-10 h-10 p-2 rounded-lg bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors">
+      <span class="w-5 h-0.5 bg-white transition-transform duration-300"></span>
+      <span class="w-5 h-0.5 bg-white transition-transform duration-300"></span>
+      <span class="w-5 h-0.5 bg-white transition-transform duration-300"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-[#0a0a0a]/95 backdrop-blur-2xl border-b border-white/10 shadow-2xl overflow-hidden transition-all duration-300 opacity-0 -translate-y-2">
+    <div class="flex flex-col p-6 gap-6">
+      <a href="/" class="text-lg font-medium text-gray-300 hover:text-white transition-colors">Inicio</a>
+      <a href="/novedades" class="text-lg font-medium text-gray-300 hover:text-white transition-colors">Novedades</a>
+      <a href="/guias" class="text-lg font-medium text-gray-300 hover:text-white transition-colors">Guías</a>
+      <div class="w-full h-px bg-white/10"></div>
+      <div class="flex items-center justify-between">
+        <span class="text-sm font-medium text-gray-500 uppercase tracking-wider">Idioma</span>
+        <button class="lang-toggle-btn px-4 py-2 rounded-lg bg-blue-500/20 text-blue-400 font-bold transition-colors">EN</button>
+      </div>
+      <a href="https://github.com/ZxeroZ/LG_Extended" target="_blank" class="w-full text-center py-3 rounded-xl bg-white text-black font-medium hover:bg-gray-200 transition-colors mt-2">
+        GitHub
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const dict = {
+    // Navbar
+    "EN": "ES",
+    "ES": "EN",
+    "Inicio": "Home",
+    "Novedades": "Releases",
+    "Guías": "Guides",
+    "Idioma": "Language",
+    "Documentación Técnica": "Technical Documentation",
+    // Hero
+    "LG Extended V1.5 is now available": "LG Extended V1.5 ya disponible",
+    "\"Stock is just a suggestion\" by ZxeroZ": "\"El stock es solo una sugerencia\" por ZxeroZ",
+    "Explore Features": "Explorar Funciones",
+    "View Gallery": "Ver Galería",
+    // Features
+    "¿Qué ofrece?": "What does it offer?",
+    "Mods diseñados para integrarse con el sistema de tu dispositivo LG V60.": "Mods designed to seamlessly integrate with your LG V60 system.",
+    "Estilos de Batería": "Battery Styles",
+    "Reemplaza el icono de batería nativo de LG por múltiples estilos como OneUI 8/9, iOS 17 y iOS 26.": "Replaces the native LG battery icon with multiple styles like OneUI 8/9, iOS 17, and iOS 26.",
+    "Exclusivo": "Exclusive",
+    "Multitarea iOS": "iOS Multitasking",
+    "Modifica la vista de recientes para implementar un estilo iOS con efectos de pila y escala.": "Modifies the recents view to implement an iOS style with stack and scale effects.",
+    "Stock": "Stock",
+    "DPI por Aplicación": "Per-App DPI",
+    "Modifica la densidad de pantalla (DPI) de cada aplicación de manera individual.": "Modifies the screen density (DPI) of each application individually.",
+    "Ajustes UI": "Settings UI",
+    "Moderniza la app de ajustes con nuevos iconos y una tarjeta personalizada.": "Modernizes the settings app with new icons and a custom card.",
+    "Panel QS": "QS Panel",
+    "Rediseño de la barra de ajustes rápidos y notificaciones añadiendo transparencias y estilos.": "Redesign of the quick settings and notifications bar adding transparencies and styles.",
+    "Más extensiones": "More extensions",
+    "Nuevos mods y funciones llegarán próximamente.": "New mods and features coming soon.",
+    "Próximamente": "Coming soon",
+    // Gallery
+    "En Acción": "In Action",
+    "Explora cómo se ve LG Extended aplicado directamente en el sistema. Cada captura es real, sin retoques.": "Explore how LG Extended looks directly on the system. Every screenshot is real, unedited.",
+    "Nuevos Ajustes": "New Settings",
+    "UI modernizada con tarjetas": "Modernized UI with cards",
+    "Nuevo Panel QS": "New QS Panel",
+    "Panel rápido translúcido": "Translucent quick panel",
+    "Multitarea Estilo 1": "Multitasking Style 1",
+    "Vista de recientes tipo iOS": "iOS-like recents view",
+    "Multitarea Estilo 2": "Multitasking Style 2",
+    "Tarjetas apiladas y escaladas": "Stacked and scaled cards",
+    "Variante QS": "QS Variant",
+    "Opciones compactas y accesibles": "Compact and accessible options",
+    "Hooks de la App": "App Hooks",
+    "Panel de control del módulo": "Module control panel",
+    // Requirements
+    "¿Qué necesitas?": "What do you need?",
+    // FAQ
+    "Preguntas Frecuentes": "Frequently Asked Questions",
+    "¿Es seguro usar LG Extended?": "Is it safe to use LG Extended?",
+    "Totalmente. Al ser un módulo de Xposed (LSPosed), todas las modificaciones se realizan en memoria (Systemless). No se alteran ni borran archivos físicos de tu sistema operativo de forma permanente. Si algo sale mal, simplemente desinstalas el módulo y reinicias.": "Absolutely. Being an Xposed (LSPosed) module, all modifications are done in memory (Systemless). No physical files on your OS are permanently altered or deleted. If something goes wrong, just uninstall the module and reboot.",
+    "¿Afecta al rendimiento o consume batería extra?": "Does it affect performance or drain battery?",
+    "No. Los hooks (ganchos) de código están programados y optimizados para consumir la menor cantidad de recursos posibles, ejecutándose solo cuando es estrictamente necesario.": "No. The code hooks are programmed and optimized to consume the least amount of resources possible, executing only when strictly necessary.",
+    "¿Es compatible con cualquier dispositivo Android?": "Is it compatible with any Android device?",
+    "No. LG Extended ha sido creado, probado y optimizado específicamente para dispositivos LG (con énfasis en el LG V60 y su capa de personalización LG UX). Su uso en otras marcas puede causar bootloops o simplemente no funcionar.": "No. LG Extended was created, tested, and optimized specifically for LG devices (with emphasis on the LG V60 and its LG UX skin). Using it on other brands might cause bootloops or simply not work.",
+    "¿Qué versión de Android soporta?": "What Android version does it support?",
+    "Solo ha sido probado en Android 13 en Stock ROM o Thunder OS versiones 1.2 y 1.0.": "It has only been tested on Android 13 on Stock ROM or Thunder OS versions 1.2 and 1.0.",
+    // Guías Sidebar
+    "Comenzar": "Get Started",
+    "Guía de instalación": "Installation Guide",
+    "Uso de Hooks y Apps": "Using Hooks and Apps",
+    "1. Hook de batería": "1. Battery Hook",
+    "2. Multitarea iOS": "2. iOS Multitasking",
+    "3. Escala DPI por app": "3. Per-App DPI Scale",
+    "4. Bypass de Seguridad": "4. Security Bypass",
+    "5. Centro de Control (HyperOS)": "5. Control Center (HyperOS)",
+    "6. Fondo QS MIUI": "6. MIUI QS Background",
+    "7. Personalizar Ajustes": "7. Customize Settings",
+    "Avanzado": "Advanced",
+    // Releases Page
+    "Novedades y Releases": "Changelog and Releases",
+    "Historial de actualizaciones, funciones nuevas, correcciones y descargas oficiales de LG Extended.": "Update history, new features, bug fixes, and official LG Extended downloads.",
+    "Nota sobre el acceso Root": "Note on Root Access",
+    "Nuestra aplicación solo requiere y utiliza permisos Root para un único propósito:": "Our application only requires and uses Root permissions for a single purpose:",
+    "reiniciar aplicaciones específicas del sistema": "restart specific system applications",
+    "(como SystemUI, el Launcher o los Ajustes) para que los hooks de LSPosed surtan efecto de inmediato. Absolutamente nada más. No modificamos archivos del sistema ni realizamos operaciones invasivas.": "(such as SystemUI, the Launcher, or Settings) so that LSPosed hooks take effect immediately. Absolutely nothing else. We do not modify system files or perform invasive operations.",
+    "Versión 1.5": "Version 1.5",
+    "Actual": "Current",
+    "Novedades": "New Features",
+    "Añadido soporte y hooks para el panel de Ajustes Rápidos (QS Panel).": "Added support and hooks for the Quick Settings (QS Panel).",
+    "Integradas nuevas transparencias y estilos visuales para las notificaciones del sistema.": "Integrated new transparencies and visual styles for system notifications.",
+    "Nueva opción para ocultar visualmente el indicador de expansión de notificaciones.": "New option to visually hide the notification expansion indicator.",
+    "Implementada la función de cambio de idioma dentro de los ajustes de la propia aplicación.": "Implemented the language change function within the application's own settings.",
+    "Correcciones": "Bug Fixes",
+    "Solucionados de forma definitiva los errores gráficos y de escala en la multitarea de iOS.": "Definitely solved graphic and scaling errors in iOS multitasking.",
+    "Reparado el problema de renderizado y bordes en el icono de batería estilo iOS 17.": "Repaired the rendering and borders issue in the iOS 17 style battery icon.",
+    "Bugs Actuales Conocidos": "Known Current Bugs",
+    "Cuando se acumulan demasiadas notificaciones, la opción de \"Separación de Tarjetas\" provoca que la tarjeta inferior se vuelva ligeramente más estrecha. Es un detalle puramente visual que no compromete el funcionamiento del dispositivo.": "When too many notifications accumulate, the \"Card Separation\" option causes the lower card to become slightly narrower. It is a purely visual detail that does not compromise the device's functionality.",
+    "Descargar APK v1.5": "Download APK v1.5",
+    "Versión 1.2": "Version 1.2",
+    "Rediseño integral de la interfaz de usuario de LG Extended.": "Comprehensive redesign of the LG Extended user interface.",
+    "Integrados los hooks para el reemplazo completo de iconos en la aplicación nativa de Ajustes de LG.": "Integrated hooks for complete icon replacement in the native LG Settings application.",
+    "Nueva capacidad para inyectar tarjetas de información personalizadas dentro de los Ajustes del sistema.": "New capability to inject custom information cards into System Settings.",
+    "Bugs Presentes en esta versión": "Bugs Present in this version",
+    "Los mismos errores de renderizado en la multitarea y el icono de batería heredados de la versión 1.0.": "The same rendering errors in multitasking and the battery icon inherited from version 1.0.",
+    "Versión 1.0": "Version 1.0",
+    "(Lanzamiento Inicial)": "(Initial Release)",
+    "Novedades Iniciales": "Initial Features",
+    "Implementación inicial de los hooks de multitarea con estilo iOS, incluyendo efectos de apilado y escala de tarjetas.": "Initial implementation of iOS-style multitasking hooks, including stacking and card scaling effects.",
+    "Sistema de modificación de iconos de batería con selectores de colores integrados.": "Battery icon modification system with integrated color selectors.",
+    "Capacidad para saltar la restricción de capturas de pantalla (Bypass Flag Secure) en aplicaciones protegidas.": "Ability to bypass the screenshot restriction (Bypass Flag Secure) in protected applications.",
+    "Nueva función para escalar la densidad de pantalla (DPI) de manera independiente por cada aplicación.": "New function to scale the screen density (DPI) independently for each application.",
+    "Bugs Conocidos": "Known Bugs",
+    "Múltiples errores de escala en la multitarea al usar el gesto rápido \"Quick Switch\".": "Multiple scaling errors in multitasking when using the \"Quick Switch\" fast gesture.",
+    "Las tarjetas de la multitarea presentaban parpadeos grises y efectos extraños al ser invocadas.": "Multitasking cards exhibited gray flickers and strange effects when invoked.",
+    "El icono de batería estilo iOS 17 sufría de problemas de dimensiones y no permitía modificar el grosor de su borde exterior.": "The iOS 17 style battery icon suffered from dimension problems and did not allow modifying the thickness of its outer border."
+  };
+
+  let currentLang = 'es';
+  const langBtns = document.querySelectorAll('.lang-toggle-btn');
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const spans = mobileMenuBtn.querySelectorAll('span');
+
+  function translateNode(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.nodeValue.trim();
+      if (text && dict[text]) {
+        node.nodeValue = node.nodeValue.replace(text, dict[text]);
+      } else {
+        // Reverse translation
+        const esKey = Object.keys(dict).find(k => dict[k] === text);
+        if (esKey) {
+          node.nodeValue = node.nodeValue.replace(text, esKey);
+        }
+      }
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      for (const child of node.childNodes) {
+        translateNode(child);
+      }
+    }
+  }
+
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentLang = currentLang === 'es' ? 'en' : 'es';
+      langBtns.forEach(b => b.textContent = currentLang === 'es' ? 'EN' : 'ES');
+      translateNode(document.body);
+      document.dispatchEvent(new CustomEvent('langToggled', { detail: currentLang }));
+    });
+  });
+
+  mobileMenuBtn.addEventListener('click', () => {
+    const isHidden = mobileMenu.classList.contains('hidden');
+    
+    if (isHidden) {
+      mobileMenu.classList.remove('hidden');
+      setTimeout(() => {
+        mobileMenu.classList.remove('opacity-0', '-translate-y-2');
+        mobileMenu.classList.add('opacity-100', 'translate-y-0');
+      }, 10);
+      
+      // Hamburger to X animation
+      spans[0].classList.add('translate-y-2', 'rotate-45');
+      spans[1].classList.add('opacity-0');
+      spans[2].classList.add('-translate-y-2', '-rotate-45');
+    } else {
+      mobileMenu.classList.remove('opacity-100', 'translate-y-0');
+      mobileMenu.classList.add('opacity-0', '-translate-y-2');
+      
+      setTimeout(() => {
+        mobileMenu.classList.add('hidden');
+      }, 300);
+      
+      // X to Hamburger animation
+      spans[0].classList.remove('translate-y-2', 'rotate-45');
+      spans[1].classList.remove('opacity-0');
+      spans[2].classList.remove('-translate-y-2', '-rotate-45');
+    }
+  });
+</script>

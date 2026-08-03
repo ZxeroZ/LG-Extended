@@ -1,0 +1,46 @@
+---
+const faqs = [
+  {
+    question: "¿Es seguro usar LG Extended?",
+    answer: "Totalmente. Al ser un módulo de Xposed (LSPosed), todas las modificaciones se realizan en memoria (Systemless). No se alteran ni borran archivos físicos de tu sistema operativo de forma permanente. Si algo sale mal, simplemente desinstalas el módulo y reinicias."
+  },
+  {
+    question: "¿Afecta al rendimiento o consume batería extra?",
+    answer: "No. Los hooks (ganchos) de código están programados y optimizados para consumir la menor cantidad de recursos posibles, ejecutándose solo cuando es estrictamente necesario."
+  },
+  {
+    question: "¿Es compatible con cualquier dispositivo Android?",
+    answer: "No. LG Extended ha sido creado, probado y optimizado específicamente para dispositivos LG (con énfasis en el LG V60 y su capa de personalización LG UX). Su uso en otras marcas puede causar bootloops o simplemente no funcionar."
+  },
+  {
+    question: "¿Qué versión de Android soporta?",
+    answer: "Solo ha sido probado en Android 13 en Stock ROM o Thunder OS versiones 1.2 y 1.0."
+  }
+];
+---
+
+<section id="faq" class="py-24 px-6 relative z-10">
+  <div class="max-w-3xl mx-auto">
+    <div class="mb-16">
+      <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4">Preguntas Frecuentes</h2>
+    </div>
+
+    <div class="space-y-px">
+      {faqs.map((faq) => (
+        <details class="group border-t border-white/[0.08] last:border-b [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between py-6 cursor-pointer text-gray-300 hover:text-white transition-colors duration-300 select-none">
+            <span class="text-base font-medium pr-4">{faq.question}</span>
+            <span class="flex-shrink-0 w-6 h-6 flex items-center justify-center transition-all duration-300">
+              <svg class="w-4 h-4 text-gray-500 transition-transform duration-300 group-open:rotate-45 group-open:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+              </svg>
+            </span>
+          </summary>
+          <div class="pb-8 text-sm text-gray-400 leading-relaxed pr-10 animate-[fadeIn_0.3s_ease]">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
