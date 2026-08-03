@@ -50,7 +50,7 @@ import * as DocEN from '../docs/DOCUMENTACION_EN.md';
     </aside>
 
     <!-- Contenido Principal -->
-    <main class="flex-1 min-w-0 w-full max-w-3xl overflow-hidden">
+    <main class="flex-1 min-w-0 w-full max-w-3xl">
       
       <div class="mb-16">
         <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">Documentación y Guías</h1>
@@ -445,38 +445,15 @@ import * as DocEN from '../docs/DOCUMENTACION_EN.md';
       titleColor: '#f8fafc',
       edgeLabelBackground: 'rgba(10, 10, 10, 0.85)',
       textColor: '#e2e8f0',
-      signalColor: '#059669',
-      signalTextColor: '#d1fae5',
-      labelBoxBkgColor: '#1e1b4b',
-      labelBoxBorderColor: '#4f46e5',
-      labelTextColor: '#e0e7ff',
-      loopTextColor: '#f8fafc',
-      activationBorderColor: '#4f46e5',
-      activationBkgColor: '#1e1b4b',
-      sequenceNumberColor: '#f8fafc',
       noteBkgColor: '#1e1b4b',
       noteTextColor: '#e0e7ff',
       noteBorderColor: '#4f46e5',
-      activationTextColor: '#e0e7ff',
     },
     flowchart: { 
-      curve: 'basis',
-      padding: 20,
       htmlLabels: true,
-      nodeSpacing: 50,
-      rankSpacing: 60,
+      useMaxWidth: true,
     },
     sequence: {
-      diagramMarginX: 30,
-      diagramMarginY: 20,
-      actorMargin: 80,
-      width: 180,
-      height: 50,
-      boxMargin: 10,
-      boxTextMargin: 5,
-      noteMargin: 15,
-      messageMargin: 40,
-      mirrorActors: true,
       useMaxWidth: true,
     },
   });
