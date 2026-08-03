@@ -187,12 +187,14 @@ import * as DocEN from '../docs/DOCUMENTACION_EN.md';
       <section id="documentacion" class="scroll-mt-28 relative">
         <h2 class="text-3xl font-bold text-white mb-8" id="doc-title">Documentación Técnica</h2>
         
-        <div id="doc-es" class="prose prose-invert prose-gray prose-a:text-blue-400 hover:prose-a:text-blue-300 max-w-none prose-pre:bg-[#111111] prose-pre:border prose-pre:border-white/10 prose-img:rounded-xl">
-          <Doc.Content />
-        </div>
-        
-        <div id="doc-en" class="hidden prose prose-invert prose-gray prose-a:text-blue-400 hover:prose-a:text-blue-300 max-w-none prose-pre:bg-[#111111] prose-pre:border prose-pre:border-white/10 prose-img:rounded-xl">
-          <DocEN.Content />
+        <div class="w-full max-w-full overflow-x-auto pb-4">
+          <div id="doc-es" class="prose prose-invert prose-gray prose-a:text-blue-400 hover:prose-a:text-blue-300 max-w-none prose-pre:bg-[#111111] prose-pre:border prose-pre:border-white/10 prose-img:rounded-xl">
+            <Doc.Content />
+          </div>
+          
+          <div id="doc-en" class="hidden prose prose-invert prose-gray prose-a:text-blue-400 hover:prose-a:text-blue-300 max-w-none prose-pre:bg-[#111111] prose-pre:border prose-pre:border-white/10 prose-img:rounded-xl">
+            <DocEN.Content />
+          </div>
         </div>
       </section>
 

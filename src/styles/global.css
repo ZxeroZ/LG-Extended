@@ -29,6 +29,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     position: relative;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 
   ::selection {
